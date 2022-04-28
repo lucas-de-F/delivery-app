@@ -1,12 +1,10 @@
 import React from 'react';
-import { EmailInput, PasswordInput, RegisterButton, LoginButton } from './components';
+
+import { LoginForm } from './components';
 
 const Login = () => (
   <>
-    <PasswordInput />
-    <EmailInput />
-    <LoginButton />
-    <RegisterButton />
+    <LoginForm />
   </>
 );
 
