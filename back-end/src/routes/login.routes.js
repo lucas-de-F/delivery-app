@@ -1,11 +1,10 @@
 const { Router } = require('express');
 
 const { authController } = require('../controllers');
-const validadeJoi = require('../utils/JoiSchemas/validateJoi');
-const schema = require('../utils/JoiSchemas/loginSchema');
+const { loginSchema, validateJoi } = require('../utils/JoiSchemas');
 
 const loginRoute = Router();
 
-loginRoute.post('/', validadeJoi(schema), authController.login);
+loginRoute.post('/', validateJoi(loginSchema), authController.login);
 
 module.exports = loginRoute;
