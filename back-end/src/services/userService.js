@@ -4,9 +4,7 @@ const { User } = require('../database/models');
 const { AppError, jwt } = require('../utils');
 
 const verifyUserEmail = async (email) => {
-  const user = await User.findOne({
-    where: { email },
-  });
+  const user = await User.findOne({ where: { email } });
 
   if (!user) return null;
 
@@ -33,6 +31,20 @@ const login = async (email, password) => {
   return token;
 };
 
+const createUser = async (data) => {
+  const { email } = data;
+  const response = await verifyUserEmail(email);
+
+  if (response) {
+    throw AppError('unauthorized', 'This email address is already in use');
+  }
+
+  const result = await User.create({ ...data, role: 'customer' });
+
+  return result;
+};
+
 module.exports = {
   login,
+  createUser,
 };
