@@ -1,0 +1,48 @@
+import React from 'react';
+import { useFormik } from 'formik';
+import { Button, TextField } from '@mui/material';
+
+const RegisterForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
+  return (
+    <form>
+      <TextField
+        type="text"
+        data-testid="common_register__input-name"
+        id="common_register__input-name"
+        { ...formik.getFieldProps('name') }
+      />
+      <TextField
+        type="text"
+        data-testid="common_register__input-email"
+        id="common_register__input-email"
+        { ...formik.getFieldProps('email') }
+      />
+      <TextField
+        type="text"
+        data-testid="common_register__input-password"
+        id="common_register__input-password"
+        { ...formik.getFieldProps('passwords') }
+      />
+      <Button
+        type="buttom"
+        variant="contained"
+        data-testid="common_register__button-register"
+      >
+        CADASTRAR
+      </Button>
+    </form>
+  );
+};
+
+export default RegisterForm;
