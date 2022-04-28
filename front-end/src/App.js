@@ -5,11 +5,17 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Login from './pages/Login';
+import Products from './pages/Products';
+import Register from './pages/Register';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route
+          path="/register"
+          element={ <Register /> }
+        />
         <Route
           path="/login"
           element={ <Login /> }
@@ -22,6 +28,10 @@ function App() {
               to="/login"
             />
           }
+        />
+        <Route
+          path="/customer/products"
+          element={ <Products /> }
         />
       </Routes>
     </Router>
