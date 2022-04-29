@@ -1,7 +1,8 @@
 const { Router } = require('express');
 
 const { authController } = require('../controllers');
-const { loginSchema, validateJoi } = require('../utils/JoiSchemas');
+const { loginSchema } = require('../utils/JoiSchemas');
+const { validateJoi } = require('../middlewares');
 
 const loginRoute = Router();
 
