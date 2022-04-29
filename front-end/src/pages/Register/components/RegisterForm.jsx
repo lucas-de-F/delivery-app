@@ -10,7 +10,7 @@ const RegisterForm = () => {
       password: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
 
@@ -35,7 +35,7 @@ const RegisterForm = () => {
         placeholder="password"
         data-testid="common_register__input-password"
         id="common_register__input-password"
-        { ...formik.getFieldProps('passwords') }
+        { ...formik.getFieldProps('password') }
       />
       <Button
         type="buttom"
