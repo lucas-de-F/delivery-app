@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import RegisterButton from './RegisterButton';
+import loginSchema from './LoginSchema';
 
 const LoginForm = () => {
+  const [able, setAble] = useState(true);
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
+    },
+    validate: (values) => {
+      const { error } = loginSchema.validate(values);
+      if (error) {
+        return setAble(true);
+      }
+      setAble(false);
     },
     onSubmit: (values) => {
       console.log(values);
@@ -36,6 +46,7 @@ const LoginForm = () => {
           color="primary"
           data-testid="common_login__button-login"
           type="submit"
+          disabled={ able }
         >
           Login
         </Button>

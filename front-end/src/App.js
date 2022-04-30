@@ -9,14 +9,17 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* <PrivateRoute /> */}
         <Route path="/register" element={ <Register /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/" element={ <Navigate replace to="/login" /> } />
 
-        <Route
-          path="/customer/products"
-          element={ <Products /> }
-        />
+        <Route element={ <PrivateRoute allowedRoles={ ['consumer'] } /> }>
+          <Route
+            path="/customer/products"
+            element={ <Products /> }
+          />
+        </Route>
       </Routes>
     </Router>
   );

@@ -1,20 +1,40 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const isAuthentcated = () => false;
+/* const ROLES = [
+  'customer',
+  'seller',
+  'administrator',
+]; */
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    { ...rest }
-    render={ (props) => (
-      isAuthentcated ? (<Component { ...props } />) : (<Navigate replace to="/login" />)
-    ) }
-  />
-);
+// const isAuthentcated = () => false;
+
+const PrivateRoute = ({ allowedRoles }) => {
+  const { auth } = useSelector((state) => state.UserSlice);
+  // auth.roles = [ consumer ]
+  // auth.roles.find((role) => allowedRoles.include(role))
+
+  return (
+    auth?.roles?.find((role) => allowedRoles?.include(role))
+      ? <Outlet />
+      : auth?.user
+        ? <Navigate to="/unauthorized" replace />
+        : <Navigate to="/login" replace />
+  );
+  /* return (
+    <Route
+      { ...rest }
+      render={ (props) => (
+        isAuthentcated ? (<Component { ...props } />) : (<Navigate replace to="/login" />)
+      ) }
+    />
+  ); */
+};
 
 export default PrivateRoute;
 
 PrivateRoute.propTypes = {
-  component: PropTypes.node.isRequired,
+  allowedRoles: PropTypes.string.isRequired,
 };
