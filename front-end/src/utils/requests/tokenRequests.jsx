@@ -7,8 +7,10 @@ class TokenUtils {
       const response = await AxiosHTTP.Request({
         url: `${LOCAL}/login`,
         method: 'POST',
-        email,
-        password,
+        body: {
+          email,
+          password,
+        },
       });
 
       return response;

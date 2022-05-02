@@ -10,6 +10,6 @@ export const extraReducers = (builder) => {
     console.log('pending');
   });
   builder.addCase(getToken.fulfilled, (state, action) => {
-    console.log('fulfilled');
+    console.log('fulfilled', action.payload);
   });
 };
