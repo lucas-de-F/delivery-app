@@ -1,7 +1,8 @@
 const { Router } = require('express');
 
 const { userController } = require('../controllers');
-const { registerSchema, validateJoi } = require('../utils/JoiSchemas');
+const { registerSchema } = require('../utils/JoiSchemas');
+const { validateJoi } = require('../middlewares');
 
 const registerRoute = Router();
 
