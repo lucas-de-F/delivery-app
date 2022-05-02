@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const RegisterInput = () => {
+const RegisterButton = () => {
   const navigate = useNavigate();
   return (
     <Button
@@ -17,4 +17,4 @@ const RegisterInput = () => {
   );
 };
 
-export default RegisterInput;
+export default RegisterButton;

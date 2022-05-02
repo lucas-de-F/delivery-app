@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 
+import { getToken } from '../../../redux/requestThunks/tokenRequests';
+import registerSchema from './RegisterSchema';
+
 const RegisterForm = () => {
+  const [able, setAble] = useState(true);
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       name: '',
       email: '',
       password: '',
     },
+    validate: (values) => {
+      const { error } = registerSchema.validate(values);
+      if (error) {
+        return setAble(true);
+      }
+      setAble(false);
+    },
     onSubmit: (values) => {
-      console.log(values);
+      dispatch(getToken(values));
     },
   });
 
@@ -38,9 +52,10 @@ const RegisterForm = () => {
         { ...formik.getFieldProps('password') }
       />
       <Button
-        type="buttom"
+        type="submit"
         variant="contained"
         data-testid="common_register__button-register"
+        disabled={ able }
       >
         CADASTRAR
       </Button>
