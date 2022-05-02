@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 
-import { getToken } from '../../../redux/requestThunks/tokenRequests';
+import { registerUser } from '../../../redux/requestThunks/tokenRequests';
 import registerSchema from './RegisterSchema';
 
 const RegisterForm = () => {
@@ -24,7 +24,7 @@ const RegisterForm = () => {
       setAble(false);
     },
     onSubmit: (values) => {
-      dispatch(getToken(values));
+      dispatch(registerUser(values));
     },
   });
 
