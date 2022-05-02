@@ -4,7 +4,7 @@ import { TextField, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
-import { getToken } from '../../../redux/userSlice';
+import { getToken } from '../../../redux/requestThunks/tokenRequests';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
@@ -23,8 +23,7 @@ const LoginForm = () => {
       setAble(false);
     },
     onSubmit: (values) => {
-      console.log(values);
-      dispatch(getToken(values.email));
+      dispatch(getToken(values));
     },
   });
 

@@ -1,23 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-
-const LOCAL = 'http://localhost:3001';
-
-export const getToken = createAsyncThunk(
-  'users/getToken',
-  async (email) => {
-    const response = await axios({
-      method: 'post',
-      url: `${LOCAL}/login`,
-      data: {
-        email,
-      },
-    });
-    console.log(response, 'GETTOKENNNNN');
-    return response;
-  },
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { extraReducers } from './requestThunks/tokenRequests';
 
 const initialState = {
   auth: {
@@ -28,6 +10,7 @@ const initialState = {
 export const UserSlice = createSlice({
   name: 'UserSlice',
   initialState,
+  extraReducers,
   reducers: {
     setAuth: (state, action) => {
       state.auth = action.payload;
