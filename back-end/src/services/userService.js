@@ -41,7 +41,11 @@ const createUser = async (data) => {
 
   const result = await User.create({ ...data, role: 'customer' });
 
-  return result;
+  const { role } = result;
+
+  const token = jwt.sign({ role });
+
+  return token;
 };
 
 module.exports = {
