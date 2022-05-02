@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 require('express-async-errors');
 
 const { loginRoute, registerRoute, productRoute } = require('../routes');
 const { domainError } = require('../middlewares');
 
 const app = express();
-
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/login', loginRoute);
