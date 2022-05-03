@@ -11,8 +11,8 @@ const verifyUserEmail = async (email) => {
   return user.dataValues;
 };
 
-const login = async (email, password) => {
-  const result = await verifyUserEmail(email);
+const login = async (e, password) => {
+  const result = await verifyUserEmail(e);
 
   if (!result) {
     throw AppError('unauthorized', 'Incorrect email or password');
@@ -24,9 +24,9 @@ const login = async (email, password) => {
     throw AppError('unauthorized', 'Incorrect email or password');
   }
 
-  const { role } = result;
+  const { role, name, email } = result;
 
-  const token = jwt.sign({ role });
+  const token = jwt.sign({ role, name, email });
 
   return token;
 };
