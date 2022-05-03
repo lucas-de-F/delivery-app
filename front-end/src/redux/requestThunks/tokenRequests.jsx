@@ -18,6 +18,7 @@ export const extraReducers = (builder) => {
     if (action.payload.statusCode === statusCode) {
       state.status = 'fulfilled';
     }
+    localStorage.setItem('token', JSON.stringify(action.payload.body.token));
   });
 
   builder.addCase(registerUser.fulfilled, (state, action) => {
