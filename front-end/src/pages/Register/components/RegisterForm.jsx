@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 
@@ -9,6 +10,14 @@ import registerSchema from './RegisterSchema';
 const RegisterForm = () => {
   const [able, setAble] = useState(true);
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.UserSlice.status);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (status === 'fulfilled') {
+      navigate('/customer/products');
+    }
+  }, [status, navigate]);
 
   const formik = useFormik({
     initialValues: {

@@ -5,6 +5,7 @@ const initialState = {
   auth: {
     roles: {},
   },
+  status: '',
 };
 
 export const UserSlice = createSlice({
@@ -15,10 +16,13 @@ export const UserSlice = createSlice({
     setAuth: (state, action) => {
       state.auth = action.payload;
     },
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setAuth, setToken } = UserSlice.actions;
+export const { setAuth, setStatus } = UserSlice.actions;
 
 export default UserSlice.reducer;

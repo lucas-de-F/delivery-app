@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Register from './pages/Register';
-import PrivateRoute from './routes/auth';
+// import PrivateRoute from './routes/auth';
 
 function App() {
   return (
@@ -13,13 +13,10 @@ function App() {
         <Route path="/register" element={ <Register /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/" element={ <Navigate replace to="/login" /> } />
-
-        <Route element={ <PrivateRoute allowedRoles={ ['consumer'] } /> }>
-          <Route
-            path="/customer/products"
-            element={ <Products /> }
-          />
-        </Route>
+        <Route
+          path="/customer/products"
+          element={ <Products /> }
+        />
       </Routes>
     </Router>
   );

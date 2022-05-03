@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import TokenUtils from '../../utils/requests/tokenRequests';
 import RegisterUtils from '../../utils/requests/registerRequest';
 
@@ -11,11 +12,18 @@ export const registerUser = createAsyncThunk(
 );
 
 export const extraReducers = (builder) => {
-  builder.addCase(getToken.fulfilled, (state, action) => {
-    console.log('fulfilled', action.payload);
+  builder.addCase(getToken
+    .fulfilled, (state, action) => {
+    const statusCode = 200;
+    if (action.payload.statusCode === statusCode) {
+      state.status = 'fulfilled';
+    }
   });
 
   builder.addCase(registerUser.fulfilled, (state, action) => {
-    console.log('fulfilled', action.payload);
+    const statusCode = 201;
+    if (action.payload.statusCode === statusCode) {
+      state.status = 'fulfilled';
+    }
   });
 };

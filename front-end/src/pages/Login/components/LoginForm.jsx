@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
 import { useFormik } from 'formik';
+
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
+  const status = useSelector((state) => state.UserSlice.status);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (status === 'fulfilled') {
+      navigate('/customer/products');
+    }
+  }, [status, navigate]);
 
   const formik = useFormik({
     initialValues: {
