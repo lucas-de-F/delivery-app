@@ -10,8 +10,6 @@ const verify = (req, res, next) => {
   try {
     const { role } = verifyToken(authorization);
 
-    console.log(role);
-
     if (role !== 'administrator' && role !== 'seller') {
       return res.status(403).json({ error: 'You are not authorized' });
     }
