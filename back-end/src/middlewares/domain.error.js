@@ -4,15 +4,16 @@ const errorMap = {
   unauthorized: 401,
 };
 
-const domainError = (err, req, res) => {
+const domainError = (err, req, res, next) => {
   const status = errorMap[err.code];
 
   if (!status) {
     console.log(err);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
-
+  
   res.status(status).json({ message: err.message });
+  next();
 };
 
 module.exports = domainError;
