@@ -1,7 +1,6 @@
 const { Sales, Product, SalesProducts } = require('../database/models');
 
-const readOne = async (id) => Sales.findAll({ 
-  include: [{ model: Product, as: 'products' }], where: { userId: id } });
+const findId = async (id) => Sales.findByPk(id, { include: [{ model: Product, as: 'products' }] });
 
 const create = async (data) => {
   const { userId, sellerId,
@@ -9,21 +8,24 @@ const create = async (data) => {
   } = data;
 
   const sale = await Sales.create({ 
+    userId,
     sellerId,
     totalPrice,
     deliveryAddress,
     deliveryNumber, 
     saleDate, 
-    status: 'pending',
-    userId,
+    status: 'Pendente',
   });
 
     await SalesProducts.bulkCreate(products.map((product) => ({ ...product, saleId: sale.id })));
 
-    const result = await readOne(userId);
+    const result = await findId(sale.id);
 
   return result;
 };
+
+const readOne = async (id) => Sales.findAll({ 
+  include: [{ model: Product, as: 'products' }], where: { userId: id } });
 
 module.exports = {
   create,
