@@ -4,7 +4,7 @@ const cors = require('cors');
 
 require('express-async-errors');
 
-const { loginRoute, registerRoute, productRoute, saleProductRoute } = require('../routes');
+const { loginRoute, registerRoute, productRoute, saleRoute } = require('../routes');
 const { domainError } = require('../middlewares');
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/products', productRoute);
-app.use('/sales', saleProductRoute);
+app.use('/sales', saleRoute);
 
 app.use(domainError);
 
