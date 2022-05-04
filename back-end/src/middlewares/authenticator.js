@@ -1,23 +1,19 @@
 const { verifyToken } = require('../utils/jwt');
 
-const verify = (req, res, next) => {
+const verify = (permission) => (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
     return res.status(401).json({ error: 'Token not found' });
   }
 
-  try {
-    const { role } = verifyToken(authorization);
+  const { role } = verifyToken(authorization);
 
-    if (role !== 'administrator' && role !== 'seller') {
-      return res.status(403).json({ error: 'You are not authorized' });
-    }
-
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: 'Invalid token' });
+  if (permission && (role !== 'administrator' && role !== permission)) {
+    return res.status(403).json({ error: 'You are not authorized' });
   }
+
+  next();
 };
 
 module.exports = verify;
