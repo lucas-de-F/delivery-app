@@ -13,7 +13,9 @@ module.exports = {
         references: {
           model: 'users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       seller_id: {
         allowNull: false,
@@ -21,7 +23,9 @@ module.exports = {
         references: {
           model: 'users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       total_price: {
         allowNull: false,
