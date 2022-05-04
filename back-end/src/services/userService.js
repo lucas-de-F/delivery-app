@@ -14,7 +14,11 @@ const verifyUserEmail = async (email) => {
 const login = async (e, password) => {
   const result = await verifyUserEmail(e);
 
-  if (!result || result.password !== md5(password)) {
+  if (!result) {
+    throw AppError('notFound', 'User not exists');
+  }
+
+  if (result.password !== md5(password)) {
     throw AppError('unauthorized', 'Incorrect email or password');
   }
 
