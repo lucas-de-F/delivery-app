@@ -7,12 +7,27 @@ const { authenticator } = require('../middlewares');
 
 const productRoute = Router();
 
-productRoute.post('/', authenticator, validateJoi(productSchema), productController.create);
+productRoute.post(
+  '/',
+  authenticator('seller'),
+  validateJoi(productSchema), 
+  productController.create,
+);
 
 productRoute.get('/', productController.read);
 
-productRoute.put('/:id', authenticator, validateJoi(productSchema), productController.update);
+productRoute.put(
+  '/:id',
+  authenticator('seller'),
+  validateJoi(productSchema),
+  productController.update,
+);
 
-productRoute.delete('/:id', authenticator, validateJoi(productSchema), productController.remove);
+productRoute.delete(
+  '/:id',
+  authenticator('seller'),
+  validateJoi(productSchema),
+  productController.remove,
+);
 
 module.exports = productRoute;
