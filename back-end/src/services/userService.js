@@ -39,7 +39,7 @@ const createUser = async ({ name, email, password }) => {
   const response = await verifyUserEmail(email);
 
   if (response) {
-    throw AppError('unauthorized', 'This email address is already in use');
+    throw AppError('conflict', 'This email address is already in use');
   }
 
   const result = await User.create({ ...newUser, role: 'customer' });
