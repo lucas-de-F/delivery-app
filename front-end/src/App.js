@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Register from './pages/Register';
+import Checkout from './pages/Checkout';
 // import PrivateRoute from './routes/auth';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           path="/customer/products"
           element={ <Products /> }
         />
+        <Route path="/customer/checkout" element={ <Checkout /> } />
       </Routes>
     </Router>
   );
