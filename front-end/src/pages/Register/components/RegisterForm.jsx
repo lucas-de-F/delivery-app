@@ -59,14 +59,14 @@ const RegisterForm = () => {
         id="common_register__input-password"
         { ...formik.getFieldProps('password') }
       />
-      <buttom
+      <button
         type="submit"
         variant="contained"
         data-testid="common_register__button-register"
         disabled={ able }
       >
         CADASTRAR
-      </buttom>
+      </button>
     </form>
   );
 };
