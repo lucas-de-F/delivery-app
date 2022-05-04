@@ -2,13 +2,13 @@ const { Router } = require('express');
 
 const { saleController } = require('../controllers');
 
-// const { productSchema } = require('../utils/JoiSchemas');
-// const { validateJoi } = require('../middlewares');
+const { saleSchema } = require('../utils/JoiSchemas');
+const { validateJoi } = require('../middlewares');
 // const { authenticator } = require('../middlewares');
 
 const saleRoute = Router();
 
-saleRoute.post('/', saleController.create);
+saleRoute.post('/', validateJoi(saleSchema), saleController.create);
 
 saleRoute.get('/:id', saleController.read);
 
