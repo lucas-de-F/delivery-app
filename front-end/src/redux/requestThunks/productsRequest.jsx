@@ -13,5 +13,5 @@ export const extraReducers = (builder) => {
     if (action.payload.statusCode === statusCode) {
       state.products = action.payload.body;
     }
-  })
+  });
 };

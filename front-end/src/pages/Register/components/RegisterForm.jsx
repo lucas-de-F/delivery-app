@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { Button, TextField } from '@mui/material';
 
 import { registerUser } from '../../../redux/requestThunks/tokenRequests';
 import registerSchema from './RegisterSchema';
@@ -39,35 +38,35 @@ const RegisterForm = () => {
 
   return (
     <form onSubmit={ formik.handleSubmit }>
-      <TextField
+      <input
         type="text"
         placeholder="name"
         data-testid="common_register__input-name"
         id="common_register__input-name"
         { ...formik.getFieldProps('name') }
       />
-      <TextField
+      <input
         type="text"
         placeholder="email"
         data-testid="common_register__input-email"
         id="common_register__input-email"
         { ...formik.getFieldProps('email') }
       />
-      <TextField
+      <input
         type="password"
         placeholder="password"
         data-testid="common_register__input-password"
         id="common_register__input-password"
         { ...formik.getFieldProps('password') }
       />
-      <Button
+      <buttom
         type="submit"
         variant="contained"
         data-testid="common_register__button-register"
         disabled={ able }
       >
         CADASTRAR
-      </Button>
+      </buttom>
     </form>
   );
 };
