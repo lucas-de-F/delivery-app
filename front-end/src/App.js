@@ -10,9 +10,9 @@ function App() {
     <Router>
       <Routes>
         {/* <PrivateRoute /> */}
+        <Route exact path="/" element={ <Navigate replace to="/login" /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/login" element={ <Login /> } />
-        <Route path="/" element={ <Navigate replace to="/login" /> } />
         <Route
           path="/customer/products"
           element={ <Products /> }

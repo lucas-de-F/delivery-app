@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button } from '@mui/material';
+
 import { useFormik } from 'formik';
 
 import RegisterButton from './RegisterButton';
@@ -40,21 +40,21 @@ const LoginForm = () => {
   return (
     <>
       <form onSubmit={ formik.handleSubmit }>
-        <TextField
+        <input
           type="text"
           data-testid="common_login__input-email"
           placeholder="email"
           id="common_login__input-email"
           { ...formik.getFieldProps('email') }
         />
-        <TextField
+        <input
           data-testid="common_login__input-password"
           id="common_login__input-password"
           placeholder="********"
           type="password"
           { ...formik.getFieldProps('password') }
         />
-        <Button
+        <button
           variant="contained"
           color="primary"
           data-testid="common_login__button-login"
@@ -62,7 +62,7 @@ const LoginForm = () => {
           disabled={ able }
         >
           Login
-        </Button>
+        </button>
       </form>
       <RegisterButton />
     </>
