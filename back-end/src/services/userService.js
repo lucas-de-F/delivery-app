@@ -1,4 +1,4 @@
-const cryptor = require('crypto');
+const md5 = require('md5');
 
 const { User } = require('../database/models');
 const { AppError, jwt } = require('../utils');
@@ -14,13 +14,7 @@ const verifyUserEmail = async (email) => {
 const login = async (e, password) => {
   const result = await verifyUserEmail(e);
 
-  if (!result) {
-    throw AppError('unauthorized', 'Incorrect email or password');
-  }
-
-  const hashPassword = cryptor.createHash('md5').update(password).digest('hex');
-
-  if (hashPassword !== result.password) {
+  if (!result || result.password !== md5(password)) {
     throw AppError('unauthorized', 'Incorrect email or password');
   }
 
@@ -31,17 +25,22 @@ const login = async (e, password) => {
   return token;
 };
 
-const createUser = async (data) => {
-  const { email } = data;
+const createUser = async ({ name, email, password }) => {
+  const newUser = {
+    name,
+    email,
+    password: md5(password),
+  };
+
   const response = await verifyUserEmail(email);
 
   if (response) {
     throw AppError('unauthorized', 'This email address is already in use');
   }
 
-  const result = await User.create({ ...data, role: 'customer' });
+  const result = await User.create({ ...newUser, role: 'customer' });
 
-    const { role } = result;
+  const { role } = result;
 
   const token = jwt.sign({ role });
 
