@@ -2,7 +2,12 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 
 const server = require('../../api/app');
-const { newProduct, validSeller, invalidNewProduct } = require('./inputs/productsInputs');
+const { 
+  newProduct,
+  validSeller,
+  invalidNewProduct,
+  validUpdateProduct
+} = require('./inputs/productsInputs');
 const { validUser } = require('./inputs/loginInputs');
 
 chai.use(chaiHttp);
@@ -162,7 +167,7 @@ describe('INTEGRATION TEST - Products Route - ENDPOINT /products', () => {
     });
   });
 
-  describe('2) - Get all products', async () => {
+  describe('2) - Read all products', async () => {
     describe('1) - When Sucess', () => {
       before(async () => {
         response = await chai
@@ -187,5 +192,182 @@ describe('INTEGRATION TEST - Products Route - ENDPOINT /products', () => {
         ]);
       });
     });
+  });
+
+  describe('3) - Update a product', async () => {
+    describe('1) - When Sucess', () => {
+      before(async () => {
+        const seller  = await chai
+          .request(server)
+          .post('/login')
+          .send(validSeller);
+
+        const { token } = seller.body;
+
+        response = await chai
+          .request(server)
+          .put('/products/12')
+          .set('Authorization', token)
+          .send(validUpdateProduct);
+      });
+
+      it('1) - should return a status code of 204', () => {
+        expect(response).to.have.status(204);
+      });
+
+      it('2) - should return a object', async () => {
+        expect(response.body).to.be.a('object');
+      });
+
+      it('3) - should not return object with message', async () => {
+        expect(response.body).to.not.have.property('error');
+        expect(response.body).to.not.have.property('message');
+        expect(response.body).to.not.have.property('token');
+      });
+    });
+
+    describe('2) - When Fail', () => {
+      describe('1) - When trying to update the product without the token', () => {
+        before(async () => {
+          response = await chai
+            .request(server)
+            .put('/products/1')
+            .send(validUpdateProduct);
+        });
+
+        it('1) - should return a status code of 401', () => {
+          expect(response).to.have.status(401);
+        });
+
+        it('2) - should return a object', async () => {
+          expect(response.body).to.be.a('object');
+        });
+
+        it('3) - should return a object with a message', async () => {
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.be.a('string');
+          expect(response.body.error).to.equal('Token not found');
+        });
+      });
+
+      describe('2 - When dont exist the product', () => {
+        before(async () => {
+          const seller  = await chai
+            .request(server)
+            .post('/login')
+            .send(validSeller);
+
+          const { token } = seller.body;
+
+          response = await chai
+            .request(server)
+            .put('/products/100')
+            .set('Authorization', token)
+            .send(validUpdateProduct);
+        });
+
+        it('1) - should return a status code of 404', () => {
+          expect(response).to.have.status(404);
+        });
+
+        it('2) - should return a object', async () => {
+          expect(response.body).to.be.a('object');
+        });
+
+        it('3) - should return a object with a message', async () => {
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.be.a('string');
+          expect(response.body.error).to.equal('Product not found');
+        });
+      });
+    })
+  });
+
+  describe('4) - Delete a product', async () => {
+    describe('1) - When Sucess', () => {
+      before(async () => {
+        const seller  = await chai
+          .request(server)
+          .post('/login')
+          .send(validSeller);
+
+        const { token } = seller.body;
+
+        response = await chai
+          .request(server)
+          .delete('/products/12')
+          .set('Authorization', token);
+      });
+
+      it('1) - should return a status code of 204', () => {
+        expect(response).to.have.status(204);
+      });
+
+      it('2) - should return a object', async () => {
+        expect(response.body).to.be.a('object');
+      });
+
+      it('3) - should not return object with message', async () => {
+        expect(response.body).to.not.have.property('error');
+        expect(response.body).to.not.have.property('message');
+        expect(response.body).to.not.have.property('token');
+      });
+    });
+
+    describe('2) - When Fail', () => {
+      describe('1) - When trying to update the product without the token', () => {
+        before(async () => {
+          response = await chai
+            .request(server)
+            .put('/products/1')
+            .send(validUpdateProduct);
+        });
+
+        it('1) - should return a status code of 401', () => {
+          expect(response).to.have.status(401);
+        });
+
+        it('2) - should return a object', async () => {
+          expect(response.body).to.be.a('object');
+        });
+
+        it('3) - should return a object with a message', async () => {
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.be.a('string');
+          expect(response.body.error).to.equal('Token not found');
+        });
+      });
+
+      describe('2 - When dont exist the product', () => {
+        before(async () => {
+          const seller  = await chai
+            .request(server)
+            .post('/login')
+            .send(validSeller);
+
+          const { token } = seller.body;
+
+          response = await chai
+            .request(server)
+            .delete('/products/100')
+            .set('Authorization', token)
+            .send(validUpdateProduct);
+        });
+
+        it('1) - should return a status code of 404', () => {
+          expect(response).to.have.status(404);
+        });
+
+        it('2) - should return a object', async () => {
+          expect(response.body).to.be.a('object');
+        });
+
+        it('3) - should return a object with a message', async () => {
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.be.a('string');
+          expect(response.body.error).to.equal('Product not found');
+        });
+      });
+    })
   });
 });
