@@ -2,9 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { extraReducers } from './requestThunks/tokenRequests';
 
 const initialState = {
-  auth: {
-    roles: {},
-  },
+  name: '',
+  auth: {},
   status: '',
 };
 
