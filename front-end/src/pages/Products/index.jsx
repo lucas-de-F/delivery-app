@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productsRequest } from '../../redux/requestThunks/productsRequest';
 import Header from '../../components/Header';
 import Product from '../../components/Product';
+import CartButton from './components/CartButton';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Products = () => {
   return (
     <div>
       <Header />
+      <CartButton />
       <div>
         { !products ? 'loading' : products
           .map((item, i) => <Product data={ item } key={ i } index={ i + 1 } />)}

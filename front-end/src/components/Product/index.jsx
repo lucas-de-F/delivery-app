@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setCart, removeCart } from '../../redux/cartSlice';
+import { setCart, removeCart, setCartByInput } from '../../redux/cartSlice';
 
 const Product = ({ data, index }) => {
   const dispatch = useDispatch();
@@ -33,6 +33,8 @@ const Product = ({ data, index }) => {
       </button>
       <label htmlFor={ `customer_products__input-card-quantity-${index}` }>
         <input
+          onChange={ (event) => dispatch(setCartByInput({ value: event.target.value,
+            data })) }
           data-testid={ `customer_products__input-card-quantity-${index}` }
           type="number"
           id={ `customer_products__input-card-quantity-${index}` }

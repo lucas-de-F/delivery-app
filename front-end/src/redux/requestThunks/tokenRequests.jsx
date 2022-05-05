@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import jwtDecode from 'jwt-decode';
 
 import TokenUtils from '../../utils/requests/tokenRequests';
 import RegisterUtils from '../../utils/requests/registerRequest';
@@ -18,7 +19,16 @@ export const extraReducers = (builder) => {
     if (action.payload.statusCode === statusCode) {
       state.status = 'fulfilled';
     }
+    const { name, email, role } = jwtDecode(action.payload.body.token);
+    state.name = name;
+    state.auth = {
+      email,
+      role,
+    };
 
+    localStorage.setItem('name', JSON.stringify(name));
+    localStorage.setItem('email', JSON.stringify(email));
+    localStorage.setItem('role', JSON.stringify(role));
     localStorage.setItem('token', JSON.stringify(action.payload.body.token));
   });
 
