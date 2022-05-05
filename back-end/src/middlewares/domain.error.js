@@ -8,14 +8,11 @@ const errorMap = {
 const domainError = (err, _req, res, _next) => {
   const status = errorMap[err.code];
 
+    /* istanbul ignore next */
   if (status) {
     return res.status(status).json({ error: err.message });
   }
 
-  /* istanbul ignore next */
-  if (err.name === 'JsonWebTokenError') {
-    return res.status(401).json({ error: 'Invalid token' });
-  }
   /* istanbul ignore next */
   console.log(err);
   /* istanbul ignore next */
