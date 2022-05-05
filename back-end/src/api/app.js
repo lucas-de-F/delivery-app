@@ -9,6 +9,7 @@ const { domainError } = require('../middlewares');
 
 const app = express();
 app.use(cors());
+app.use('/images', express.static('images'));
 app.use(bodyParser.json());
 
 app.use('/login', loginRoute);
