@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setCart, removeCart, setCartByInput } from '../../redux/cartSlice';
+import { setCart, removeCart, setPrice } from '../../redux/cartSlice';
 
 const Product = ({ data, index }) => {
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.CartSlice.cart);
+  const { cart } = useSelector((state) => state.CartSlice);
 
   return (
     <div>
@@ -33,12 +33,13 @@ const Product = ({ data, index }) => {
       </button>
       <label htmlFor={ `customer_products__input-card-quantity-${index}` }>
         <input
-          onChange={ (event) => dispatch(setCartByInput({ value: event.target.value,
-            data })) }
+          onChange={ (event) => dispatch(setPrice({
+            quantity: event.target.value, data,
+          })) }
           data-testid={ `customer_products__input-card-quantity-${index}` }
           type="number"
           id={ `customer_products__input-card-quantity-${index}` }
-          value={ product[data.name]?.quantity ? product[data.name]?.quantity : 0 }
+          value={ !cart[data.name]?.quantity ? 0 : cart[data.name]?.quantity }
         />
       </label>
     </div>

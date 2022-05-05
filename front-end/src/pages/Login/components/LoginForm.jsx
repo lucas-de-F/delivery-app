@@ -18,7 +18,7 @@ const LoginForm = () => {
     if (status === 'fulfilled') {
       navigate('/customer/products');
     }
-  }, [status, navigate]);
+  }, [able, status, navigate]);
 
   const formik = useFormik({
     initialValues: {

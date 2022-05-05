@@ -1,4 +1,5 @@
 import React from 'react';
+import './css.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Products from './pages/Products';
@@ -11,14 +12,11 @@ function App() {
     <Router>
       <Routes>
         {/* <PrivateRoute /> */}
-        <Route path="/register" element={ <Register /> } />
-        <Route path="/login" element={ <Login /> } />
+        <Route exact path="/customer/products" element={ <Products /> } />
+        <Route exact path="/customer/checkout" element={ <Checkout /> } />
+        <Route exact path="/register" element={ <Register /> } />
+        <Route exact path="/login" element={ <Login /> } />
         <Route exact path="/" element={ <Navigate replace to="/login" /> } />
-        <Route
-          path="/customer/products"
-          element={ <Products /> }
-        />
-        <Route path="/customer/checkout" element={ <Checkout /> } />
       </Routes>
     </Router>
   );
