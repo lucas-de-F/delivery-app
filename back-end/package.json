@@ -12,7 +12,7 @@
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon .",
-    "test": "mocha src/tests/**/*$NAME*.test.js --exit",
+    "test": "mocha src/tests/**/*$NAME*.test.js --exit -t 60000",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
@@ -42,6 +42,7 @@
     "nodemon": "2.0.15",
     "nyc": "15.1.0",
     "sequelize-cli": "6.4.1",
+    "shelljs": "^0.8.5",
     "sinon": "13.0.1"
   }
 }
