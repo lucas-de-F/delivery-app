@@ -1,28 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-// import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setCart, removeCart } from '../../redux/cartSlice';
 
 const Product = ({ data, index }) => {
   const dispatch = useDispatch();
-
-  /* const formik = useFormik({
-    initialValues: {
-      data: {},
-    },
-    validate: (values) => {
-      const { error } = loginSchema.validate(values);
-      if (error) {
-        return setAble(true);
-      }
-      setAble(false);
-    },
-    onSubmit: (values) => {
-      dispatch(getToken(values));
-    },
-  }); */
+  const product = useSelector((state) => state.CartSlice.cart);
 
   return (
     <div>
@@ -50,7 +34,9 @@ const Product = ({ data, index }) => {
       <label htmlFor={ `customer_products__input-card-quantity-${index}` }>
         <input
           data-testid={ `customer_products__input-card-quantity-${index}` }
-          type="text"
+          type="number"
+          id={ `customer_products__input-card-quantity-${index}` }
+          value={ product[data.name]?.quantity ? product[data.name]?.quantity : 0 }
         />
       </label>
     </div>

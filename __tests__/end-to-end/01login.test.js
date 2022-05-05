@@ -33,6 +33,7 @@ describe(requirement(1), () => {
   });
   test("O avaliador navegará para o endereço do host utilizando o endpoint '/login'", async () => {
     await expect(page).toNavigate(`${host}/login`);
+
     await expect(page).toCompareURL(`${host}/login`);
   });
 });
