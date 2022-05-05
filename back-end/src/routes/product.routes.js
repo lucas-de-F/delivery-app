@@ -23,11 +23,6 @@ productRoute.put(
   productController.update,
 );
 
-productRoute.delete(
-  '/:id',
-  authenticator('seller'),
-  validateJoi(productSchema),
-  productController.remove,
-);
+productRoute.delete('/:id', authenticator('seller'), productController.remove);
 
 module.exports = productRoute;
