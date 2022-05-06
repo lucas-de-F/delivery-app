@@ -1,15 +1,24 @@
 import React from 'react';
-import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import './css.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Products from './pages/Products';
+import Register from './pages/Register';
+import Checkout from './pages/Checkout';
+// import PrivateRoute from './routes/auth';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <Router>
+      <Routes>
+        {/* <PrivateRoute /> */}
+        <Route exact path="/customer/products" element={ <Products /> } />
+        <Route exact path="/customer/checkout" element={ <Checkout /> } />
+        <Route exact path="/register" element={ <Register /> } />
+        <Route exact path="/login" element={ <Login /> } />
+        <Route exact path="/" element={ <Navigate replace to="/login" /> } />
+      </Routes>
+    </Router>
   );
 }
 

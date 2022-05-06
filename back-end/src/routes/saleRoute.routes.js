@@ -1,0 +1,17 @@
+const { Router } = require('express');
+
+const { saleController } = require('../controllers');
+
+const { saleSchema } = require('../utils/JoiSchemas');
+const { validateJoi } = require('../middlewares');
+const { authenticator } = require('../middlewares');
+
+const saleRoute = Router();
+
+saleRoute.post('/', authenticator('customer'), validateJoi(saleSchema), saleController.create);
+
+saleRoute.get('/:id', authenticator(), saleController.read);
+
+saleRoute.put('/:id', authenticator('seller'), saleController.update);
+
+module.exports = saleRoute;
