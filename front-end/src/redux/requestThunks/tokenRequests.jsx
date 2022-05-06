@@ -30,8 +30,11 @@ export const extraReducers = (builder) => {
     localStorage.setItem('email', JSON.stringify(email));
     localStorage.setItem('role', JSON.stringify(role));
     localStorage.setItem('token', JSON.stringify(action.payload.body.token));
-  });
-
+  })
+    .addCase(getToken.rejected, (state) => {
+      console.log('asdasd');
+      state.status = 'rejected';
+    });
   builder.addCase(registerUser.fulfilled, (state, action) => {
     const statusCode = 201;
     if (action.payload.statusCode === statusCode) {

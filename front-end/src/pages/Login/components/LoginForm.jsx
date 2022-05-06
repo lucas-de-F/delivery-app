@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
 
 import RegisterButton from './RegisterButton';
@@ -13,6 +13,7 @@ const LoginForm = () => {
   const status = useSelector((state) => state.UserSlice.status);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [err, setError] = useState(false);
 
   useEffect(() => {
     if (status === 'fulfilled') {
@@ -33,7 +34,7 @@ const LoginForm = () => {
       setAble(false);
     },
     onSubmit: (values) => {
-      dispatch(getToken(values));
+      dispatch(getToken(values)).then(unwrapResult).then().catch((e) => console.log(e));
     },
   });
 
