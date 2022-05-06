@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 import { registerUser } from '../../../redux/requestThunks/tokenRequests';
 import registerSchema from './RegisterSchema';
@@ -12,13 +13,14 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.UserSlice.status);
   const navigate = useNavigate();
+  const [err, setError] = useState(false);
 
   useEffect(() => {
     if (status === 'fulfilled') {
       navigate('/customer/products', { replace: true });
       dispatch(setStatus('pending'));
     }
-  }, [status, navigate]);
+  }, [status, navigate, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +29,8 @@ const RegisterForm = () => {
       password: '',
     },
     validate: (values) => {
+      setError(false);
+
       const { error } = registerSchema.validate(values);
       if (error) {
         return setAble(true);
@@ -34,7 +38,7 @@ const RegisterForm = () => {
       setAble(false);
     },
     onSubmit: (values) => {
-      dispatch(registerUser(values));
+      dispatch(registerUser(values)).then(unwrapResult).then().catch(setError(true));
     },
   });
 
@@ -61,6 +65,9 @@ const RegisterForm = () => {
         id="common_register__input-password"
         { ...formik.getFieldProps('password') }
       />
+      {err === true
+        ? <div data-testid="common_register__element-invalid_register">ERRO</div>
+        : <> </> }
       <button
         type="submit"
         variant="contained"
