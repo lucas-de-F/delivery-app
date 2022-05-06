@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
+import { setStatus } from '../../../redux/userSlice';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
@@ -18,6 +19,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (status === 'fulfilled') {
       navigate('/customer/products');
+      setStatus('');
     }
   }, [able, status, navigate]);
 
