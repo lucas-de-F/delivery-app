@@ -75,7 +75,7 @@ describe(requirement(12), () => {
   );
 });
 
-describe.only(requirement(13), () => {
+describe(requirement(13), () => {
   test("O avaliador testará se o local storage contém os dados da pessoa usuária", async () => {
     const { name, email } = user.customer();
 
@@ -245,7 +245,7 @@ describe(requirement(15), () => {
   });
 });
 
-describe(requirement(16), () => {
+describe.only(requirement(16), () => {
   test("O avaliador testará a existência de um botão de carrinho com um valor total válido e que seja capaz de nos direcionar a tela de checkout", async () => {
     const itemList = action.customer.getRandomProducts();
     showCurrentCart(itemList, global.__TESTDESC__);

@@ -11,7 +11,11 @@ const Product = ({ data, index }) => {
   return (
     <div>
       <p data-testid={ `customer_products__element-card-title-${index}` }>{data.name}</p>
-      <p data-testid={ `customer_products__element-card-price-${index}` }>{data.price}</p>
+      <p data-testid={ `customer_products__element-card-price-${index}` }>
+        {
+          Number(data.price).toFixed(2).toString().replace('.', ',')
+        }
+      </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${index}` }
         alt="product"
