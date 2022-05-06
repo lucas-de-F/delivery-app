@@ -42,7 +42,7 @@ export const CartSlice = createSlice({
       state.totalPrice = chaves.reduce((acc, chave) => {
         acc += valores[chave].quantity * valores[chave].price;
         return acc;
-      }, 0).toFixed(2);
+      }, 0).toFixed(2).toString().replace('.', ',');
     },
   },
 });

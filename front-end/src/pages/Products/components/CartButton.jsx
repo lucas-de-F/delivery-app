@@ -11,7 +11,7 @@ const CartButton = () => {
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          { `Ver Carrinho: R$ ${totalPrice}` }
+          {totalPrice}
         </span>
       </button>
     </Link>
