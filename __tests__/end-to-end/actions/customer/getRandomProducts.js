@@ -21,7 +21,7 @@ const getRandomProducts = () => {
       subTotal: subTotal.toFixed(2).replace(/\./, ","),
     };
   });
-
+  console.log(cart, "CAAARRRRD")
   return {
     cart,
     totalPrice: totalPrice.toFixed(2).replace(/\./, ","),

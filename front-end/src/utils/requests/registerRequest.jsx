@@ -3,11 +3,12 @@ import AxiosHTTP from './axios';
 const LOCAL = 'http://localhost:3001';
 
 class TokenUtils {
-  getToken = async ({ email, password }) => {
+  registerUser = async ({ name, email, password }) => {
     const response = await AxiosHTTP.Request({
-      url: `${LOCAL}/login`,
+      url: `${LOCAL}/register`,
       method: 'POST',
       body: {
+        name,
         email,
         password,
       },

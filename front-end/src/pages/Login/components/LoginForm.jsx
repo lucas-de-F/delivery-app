@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { TextField, Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { useFormik } from 'formik';
+
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
+  const status = useSelector((state) => state.UserSlice.status);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (status === 'fulfilled') {
+      navigate('/customer/products');
+    }
+  }, [able, status, navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -30,21 +40,21 @@ const LoginForm = () => {
   return (
     <>
       <form onSubmit={ formik.handleSubmit }>
-        <TextField
+        <input
           type="text"
           data-testid="common_login__input-email"
           placeholder="email"
           id="common_login__input-email"
           { ...formik.getFieldProps('email') }
         />
-        <TextField
+        <input
           data-testid="common_login__input-password"
           id="common_login__input-password"
           placeholder="********"
           type="password"
           { ...formik.getFieldProps('password') }
         />
-        <Button
+        <button
           variant="contained"
           color="primary"
           data-testid="common_login__button-login"
@@ -52,7 +62,7 @@ const LoginForm = () => {
           disabled={ able }
         >
           Login
-        </Button>
+        </button>
       </form>
       <RegisterButton />
     </>
