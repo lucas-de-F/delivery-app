@@ -15,7 +15,8 @@ const Products = () => {
   const { cart } = useSelector((state) => state.CartSlice);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
     if (token) {
       dispatch(productsRequest(token));
       setStatus('');
