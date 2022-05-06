@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 
 import { registerUser } from '../../../redux/requestThunks/tokenRequests';
 import registerSchema from './RegisterSchema';
+import { setStatus } from '../../../redux/userSlice';
 
 const RegisterForm = () => {
   const [able, setAble] = useState(true);
@@ -14,7 +15,8 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (status === 'fulfilled') {
-      navigate('/customer/products');
+      navigate('/customer/products', { replace: true });
+      dispatch(setStatus('pending'));
     }
   }, [status, navigate]);
 

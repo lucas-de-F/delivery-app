@@ -18,10 +18,10 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (status === 'fulfilled') {
-      navigate('/customer/products');
-      setStatus('');
+      navigate('/customer/products', { replace: true });
+      dispatch(setStatus('pending'));
     }
-  }, [able, status, navigate]);
+  }, [able, status, navigate, dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -29,6 +29,7 @@ const LoginForm = () => {
       password: '',
     },
     validate: (values) => {
+      setError(false);
       const { error } = loginSchema.validate(values);
       if (error) {
         return setAble(true);
@@ -36,7 +37,7 @@ const LoginForm = () => {
       setAble(false);
     },
     onSubmit: (values) => {
-      dispatch(getToken(values)).then(unwrapResult).then().catch((e) => console.log(e));
+      dispatch(getToken(values)).then(unwrapResult).then().catch(setError(true));
     },
   });
 
@@ -67,6 +68,9 @@ const LoginForm = () => {
           Login
         </button>
       </form>
+      {err === true
+        ? <div data-testid="common_login__element-invalid-email">ERRO</div>
+        : <> </> }
       <RegisterButton />
     </>
   );

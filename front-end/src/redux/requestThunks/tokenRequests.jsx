@@ -32,7 +32,6 @@ export const extraReducers = (builder) => {
     localStorage.setItem('token', JSON.stringify(action.payload.body.token));
   })
     .addCase(getToken.rejected, (state) => {
-      console.log('asdasd');
       state.status = 'rejected';
     });
   builder.addCase(registerUser.fulfilled, (state, action) => {
@@ -40,16 +39,5 @@ export const extraReducers = (builder) => {
     if (action.payload.statusCode === statusCode) {
       state.status = 'fulfilled';
     }
-    const { name, email, role } = jwtDecode(action.payload.body.token);
-    state.name = name;
-    state.auth = {
-      email,
-      role,
-    };
-
-    localStorage.setItem('name', JSON.stringify(name));
-    localStorage.setItem('email', JSON.stringify(email));
-    localStorage.setItem('role', JSON.stringify(role));
-    localStorage.setItem('token', JSON.stringify(action.payload.body.token));
   });
 };
