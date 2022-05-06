@@ -30,7 +30,7 @@ const Products = () => {
       <CartButton />
       <div>
         { !products ? 'loading' : products
-          .map((item, i) => <Product data={ item } key={ i } index={ i } />)}
+          .map((item, i) => <Product data={ item } key={ i } index={ i + 1 } />)}
       </div>
     </div>
   );
