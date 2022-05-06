@@ -1,9 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const name = useSelector((state) => state.UserSlice.name);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClick = () => {
+    window.localStorage.clear();
+
+    navigate("/login", { replace: true });
+  }
 
   return (
     <nav>
@@ -27,11 +35,13 @@ const Header = () => {
         >
           { name }
         </li>
-        <li
-          data-testid="customer_products__element-navbar-link-logout"
-        >
-          SAIR
-        </li>
+        <button type='button' onClick={ () => handleClick() }>
+          <li
+            data-testid="customer_products__element-navbar-link-logout"
+          >
+            SAIR
+          </li>
+        </button>
       </ul>
     </nav>
   );

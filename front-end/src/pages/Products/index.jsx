@@ -7,6 +7,7 @@ import { setCartByInput } from '../../redux/cartSlice';
 import Header from '../../components/Header';
 import Product from '../../components/Product';
 import CartButton from './components/CartButton';
+import { setStatus } from '../../redux/userSlice';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Products = () => {
     const token = localStorage.getItem('token');
     if (token) {
       dispatch(productsRequest(token));
+      setStatus('');
     }
   }, [dispatch]);
 
