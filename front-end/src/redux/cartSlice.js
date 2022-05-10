@@ -29,6 +29,11 @@ export const CartSlice = createSlice({
 
     removeCart: (state, action) => {
       const check = state.cart[action.payload.name]?.quantity;
+      if (action.payload.removeAll === true) {
+        delete state.cart[action.payload.name];
+        return;
+      }
+
       if (check >= 2) {
         state.cart[action.payload.name].quantity -= 1;
       } else {

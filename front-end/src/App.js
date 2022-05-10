@@ -14,6 +14,7 @@ function App() {
         {/* <PrivateRoute /> */}
         <Route exact path="/customer/products" element={ <Products /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
+        {/* <Route exact path="/customer/checkout" element={ <Orders /> } /> */}
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/login" element={ <Login /> } />
         <Route exact path="/" element={ <Navigate replace to="/login" /> } />
