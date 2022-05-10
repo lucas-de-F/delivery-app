@@ -25,6 +25,7 @@ export const extraReducers = (builder) => {
       const { name, email, role, id } = jwtDecode(token);
       state.name = name;
       state.auth = {
+        userId: id,
         email,
         id,
         role,

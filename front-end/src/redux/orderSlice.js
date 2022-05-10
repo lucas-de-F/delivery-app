@@ -1,22 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { extraReducers } from './requestThunks/productsRequest';
+import { extraReducers } from './requestThunks/orderRequest';
 
 const initialState = {
-  orders: [],
+  orderId: '',
 };
 
-export const orderSlice = createSlice({
-  name: 'orderSlice',
+export const OrderSlice = createSlice({
+  name: 'OrderSlice',
   initialState,
   extraReducers,
   reducers: {
-    setProducts: (state, action) => {
-      state.products = action.payload;
+    setOrderId: (state, action) => {
+      state.orderId = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setProducts } = orderSlice.actions;
+export const { setOrderId } = OrderSlice.actions;
 
-export default orderSlice.reducer;
+export default OrderSlice.reducer;
