@@ -1,39 +1,45 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const DetailsStatus = () => (
-  <div style={ { width: 500 } }>
-    Detalhes do pedido
-    <div>
-      <ul style={ { display: 'flex' } }>
-        <li
-          data-testid="customer_order_details__element-order-details-label-order-id"
-        >
-          ID do pedido
-        </li>
-        <li
-          data-testid=" customer_order_details__element-order-details-label-seller-name"
-        >
-          Nome do vendedor
-        </li>
-        <li
-          data-testid="customer_order_details__element-order-details-label-order-date"
-        >
-          Data do pedido
-        </li>
-        <li
-          data-testid="
+const DetailsStatus = () => {
+  const { id, saleDate, status } = useSelector((state) => state.orderSlice.order);
+
+  return (
+    <div style={ { width: 500 } }>
+      Detalhes do pedido
+      <div>
+        <ul style={ { display: 'flex' } }>
+          <li
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            { id }
+          </li>
+          <li
+            data-testid=" customer_order_details__element-order-details-label-seller-name"
+          >
+            Fulana Pereira
+          </li>
+          <li
+            data-testid="customer_order_details__element-order-details-label-order-date"
+          >
+            { saleDate}
+          </li>
+          <li
+            data-testid="
           customer_order_details__element-order-details-label-delivery-status"
-        >
-          Status de entrega
-        </li>
-        <li
-          data-testid="customer_order_details__button-delivery-check"
-        >
-          Marcar como entregue
-        </li>
-      </ul>
+          >
+            { status }
+          </li>
+          <button
+            type="button"
+            data-testid="customer_order_details__button-delivery-check"
+          >
+            Marcar como entregue
+          </button>
+        </ul>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default DetailsStatus;
