@@ -16,7 +16,6 @@ export const UserSlice = createSlice({
       state.auth = action.payload;
     },
     setStatus: (state, action) => {
-      console.log(action.payload);
       state.status = action.payload;
     },
   },

@@ -6,7 +6,6 @@ const CartButton = () => {
   const navigate = useNavigate();
 
   const totalPrice = useSelector((state) => state.CartSlice.totalPrice);
-  console.log(Number(totalPrice));
   return (
     <button
       disabled={ totalPrice === '0,00' }

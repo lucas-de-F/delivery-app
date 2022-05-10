@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const mocks = [
+import { setCartByInput, removeCart } from '../../redux/cartSlice';
+
+/* const mocks = [
   {
     quantity: 1,
     name: 'NOME PRODUTO1',
@@ -31,42 +34,69 @@ const mocks = [
     name: 'NOME PRODUTO6',
     price: 3.44,
   },
-];
+]; */
 
-const ProductList = () => (
-  <div style={ { width: 500 } }>
-    Finalizar produto
-    <ol>
-      {mocks.map((product, key) => (
-        <li
-          key={ key }
-          data-testid="customer_products__element-navbar-link-products"
-          style={ { display: 'flex', justifyContent: 'space-between', margin: 10 } }
-        >
-          <div data-testid="customer_checkout__element-order-table-item-number-">
-            { key + 1 }
-          </div>
-          <div data-testid="customer_checkout__element-order-table-name-">
-            { product.name }
-          </div>
-          <div data-testid="customer_checkout__element-order-table-quantity-">
-            { product.quantity }
-          </div>
-          <div data-testid="customer_checkout__element-order-table-price-">
-            { product.price }
-          </div>
-          <div data-testid="customer_checkout__element-order-table-price-">
-            { product.price * product.quantity }
-          </div>
-          <button
-            type="button"
-            data-testid="customer_checkout__element-order-table-remove-"
-          >
-            Remove
-          </button>
-        </li>
-      ))}
-    </ol>
-  </div>
-);
+const ProductList = () => {
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.CartSlice);
+
+  useEffect(() => {
+    dispatch(setCartByInput(cart));
+  }, [cart, dispatch]);
+  const toFixedNumber = 3;
+  return (
+    <div style={ { width: 500 } }>
+      Finalizar produto
+      <ol>
+        { !cart ? 'carrinho vazio' : Object.keys(cart).map((payload, key) => {
+          console.log(cart, payload);
+          return (
+            <li
+              key={ key }
+              style={ { display: 'flex', justifyContent: 'space-between', margin: 10 } }
+            >
+              <div
+                data-testid={
+                  `customer_checkout__element-order-table-item-number-${key}`
+                }
+              >
+                {key + 1}
+              </div>
+              <div data-testid={ `customer_checkout__element-order-table-name-${key}` }>
+                {payload}
+              </div>
+              <div
+                data-testid={
+                  `customer_checkout__element-order-table-quantity-${key}`
+                }
+              >
+                {cart[payload].quantity}
+              </div>
+              <div
+                data-testid={ `customer_checkout__element-order-table-unit-price-${key}` }
+              >
+                {Number(cart[payload].price)
+                  .toFixed(toFixedNumber).toString().replace('.', ',')}
+              </div>
+              <div
+                data-testid={ `customer_checkout__element-order-table-sub-total-${key}` }
+              >
+                {(cart[payload].quantity * cart[payload].price)
+                  .toFixed(toFixedNumber).toString().replace('.', ',')}
+              </div>
+              <button
+                type="button"
+                data-testid={ `customer_checkout__element-order-table-remove-${key}` }
+                onClick={ () => dispatch(removeCart({ name: payload })) }
+              >
+                Remove
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+};
+
 export default ProductList;
