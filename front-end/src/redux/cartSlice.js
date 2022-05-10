@@ -10,6 +10,7 @@ export const CartSlice = createSlice({
   initialState,
   reducers: {
     setCart: (state, action) => {
+      console.log(action);
       const check = state.cart[action.payload.name];
       if (check) {
         state.cart[action.payload.name].quantity += 1;
