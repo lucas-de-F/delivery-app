@@ -3,9 +3,10 @@ import AxiosHTTP from './axios';
 const LOCAL = 'http://localhost:3001';
 
 class OrderIdUtils {
-  getOrdersById = async ({ id, token }) => {
+  getOrdersById = async ({ auth, token }) => {
+    console.log('REQUISIÇÂO', { auth, token }, 'REQUISIÇÂO');
     const response = await AxiosHTTP.RequestWithToken({
-      url: `${LOCAL}/sales/${id}`,
+      url: `${LOCAL}/sales/${auth.userId}`,
       method: 'GET',
       headers: {
         authorization: token,
@@ -14,17 +15,17 @@ class OrderIdUtils {
     return response;
   }
 
-  getOrders = async ({ token }) => {
-    const response = await AxiosHTTP.Request({
-      url: `${LOCAL}/sales`,
-      method: 'GET',
-      headers: {
-        authorization: token,
-      },
-    });
+  // getOrders = async ({ token }) => {
+  //   const response = await AxiosHTTP.Request({
+  //     url: `${LOCAL}/sales`,
+  //     method: 'GET',
+  //     headers: {
+  //       authorization: token,
+  //     },
+  //   });
 
-    return response;
-  }
+  //   return response;
+  // }
 
   orderRequest = async ({ userId,
     sellerId,
