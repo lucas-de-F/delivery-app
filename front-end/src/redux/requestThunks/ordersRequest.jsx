@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import OrderUtils from '../../utils/requests/OrdersRequest';
+import OrderUtils from '../../utils/requests/ordersRequests';
 
 export const ordersRequest = createAsyncThunk(
-  'OrdersSlice/ordersRequest', (user) => OrderUtils.ordersRequest(user),
+  'OrdersSlice/ordersRequest', (user) => OrderUtils.getOrders(user),
 );
 
 export const extraReducers = (builder) => {

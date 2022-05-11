@@ -12,7 +12,9 @@ const ProductList = () => {
           style={ { display: 'flex', justifyContent: 'space-between', margin: 10 } }
         >
           <div
-            data-testid={ `customer_order_details__element-order-table-item-number-${key}` }
+            data-testid={
+              `customer_order_details__element-order-table-item-number-${key}`
+            }
           >
             { products[key].id }
           </div>
@@ -25,12 +27,16 @@ const ProductList = () => {
             { products[key].SalesProducts.quantity }
           </div>
           <div
-            data-testid={ `customer_order_details__element-order-table-unit-price-${key}` }
+            data-testid={
+              `customer_order_details__element-order-table-unit-price-${key}`
+            }
           >
             { products[key].price }
           </div>
           <div
-            data-testid={ `customer_order_details__element-order-table-sub-total--${key}` }
+            data-testid={
+              `customer_order_details__element-order-table-sub-total--${key}`
+            }
           >
             {(products[key].SalesProducts.quantity * products[key].price)
               .toFixed(toFixedNumber).toString().replace('.', ',')}

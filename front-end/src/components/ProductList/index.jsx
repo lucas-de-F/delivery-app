@@ -85,7 +85,7 @@ const ProductList = () => {
             <button
               type="button"
               data-testid={ `customer_checkout__element-order-table-remove-${key}` }
-              onClick={ () => dispatch(removeCart({ name: payload })) }
+              onClick={ () => dispatch(removeCart({ name: payload, removeAll: true })) }
             >
               Remove
             </button>
