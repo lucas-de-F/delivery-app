@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import OrderUtils from '../../utils/requests/orderRequest';
+import OrderRequest from '../../utils/requests/ordersRequests';
 
-export const OrderRequest = createAsyncThunk(
-  'OrderSlice/orderRequest', (user) => OrderUtils.orderRequest(user),
+export const OrderRequestThunk = createAsyncThunk(
+  'OrderSlice/orderRequest', (user) => OrderRequest.getOrdersById(user),
 );
 
 export const extraReducers = (builder) => {
-  builder.addCase(OrderRequest
+  builder.addCase(OrderRequestThunk
     .fulfilled, (state, action) => {
     const statusCode = 201;
     if (action.payload.statusCode === statusCode) {
