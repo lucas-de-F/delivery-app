@@ -8,7 +8,7 @@ const { authenticator } = require('../middlewares');
 
 const saleRoute = Router();
 
-saleRoute.post('/', authenticator('customer'), validateJoi(saleSchema), saleController.create);
+saleRoute.post('/', authenticator(), validateJoi(saleSchema), saleController.create);
 
 saleRoute.get('/:id', saleController.read);
 
