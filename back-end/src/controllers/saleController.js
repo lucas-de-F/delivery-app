@@ -10,6 +10,10 @@ const read = async (req, res) => {
   const { id } = req.params;
   const { role } = req.query;
 
+  if (!role) {
+    return res.status(401).json({ error: 'Role is required' });
+  }
+
   const result = await saleService.readOne(id, role);
 
   res.status(200).json(result);
