@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
 import Header from '../../components/Header';
 import OrdersList from './components/OrdersList';
 import { OrderRequestThunk } from '../../redux/requestThunks/orderRequest';
@@ -11,9 +10,7 @@ const DetailsOrder = () => {
   const { token } = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    console.log('token', token);
-    dispatch(OrderRequestThunk({ auth, token }))
-      .then(unwrapResult).then().catch((e) => console.log('ERRO', e));
+    dispatch(OrderRequestThunk({ auth, token }));
   }, [auth, dispatch, token]);
 
   return (

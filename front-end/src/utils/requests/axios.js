@@ -13,6 +13,7 @@ class AxiosHTTP {
     } catch (error) {
       axiosResponse = error.response;
     }
+    console.log(axiosResponse.status);
     return {
       statusCode: axiosResponse.status,
       body: axiosResponse.data,
@@ -26,7 +27,9 @@ class AxiosHTTP {
       axiosResponse = await axios.request({
         url: data.url,
         method: data.method,
-        headers: data.headers.authorization,
+        headers: {
+          authorization: data.headers.authorization,
+        },
         data: data.body,
       });
     } catch (error) {

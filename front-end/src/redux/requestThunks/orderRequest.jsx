@@ -9,7 +9,7 @@ export const OrderRequestThunk = createAsyncThunk(
 export const extraReducers = (builder) => {
   builder.addCase(OrderRequestThunk
     .fulfilled, (state, action) => {
-    console.log(state);
+    console.log(action.payload);
     // if (action.payload.statusCode === statusCode) {
     //   state.orderId = action.payload.body;
     // }

@@ -4,7 +4,6 @@ const LOCAL = 'http://localhost:3001';
 
 class OrderIdUtils {
   getOrdersById = async ({ auth, token }) => {
-    console.log('REQUISIÇÂO', { auth, token }, 'REQUISIÇÂO');
     const response = await AxiosHTTP.RequestWithToken({
       url: `${LOCAL}/sales/${auth.userId}`,
       method: 'GET',

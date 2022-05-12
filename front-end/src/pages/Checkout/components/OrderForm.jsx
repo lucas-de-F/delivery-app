@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 
-// import { OrderRequest } from '../../../redux/requestThunks/orderRequest';
+import { getSellers } from '../../../redux/Seller';
 
 const DetailsAndDeliveryAddressForm = () => {
-  // const auth = useSelector((state) => state.UserSlice.auth);
-  // const { cart } = useSelector((state) => state.CartSlice);
+  const dispatch = useDispatch();
 
+  const auth = useSelector((state) => state.UserSlice.auth);
+  useEffect(() => {
+    dispatch(getSellers(auth));
+  }, [auth, dispatch]);
   const formik = useFormik({
     initialValues: {
       sellerId: 2,
@@ -23,8 +27,7 @@ const DetailsAndDeliveryAddressForm = () => {
       }
       setAble(false);
     }, */
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: () => {
       // const { token } = JSON.parse(localStorage.getItem('user'));
       // const newDate = new Date();
       // const arrayCart = Object.keys(cart);
