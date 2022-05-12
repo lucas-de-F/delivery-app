@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+const utc = require('dayjs/plugin/utc');
 const dayjs = require('dayjs');
+
+dayjs.extend(utc);
 
 const OrdersList = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
@@ -24,7 +27,7 @@ const OrdersList = () => {
             {order.status}
           </li>
           <li data-testid={ `customer_orders__element-order-date-${order.id}` }>
-            {dayjs(order.saleDate).format('DD/MM/YYYY')}
+            {dayjs.utc(order.saleDate).format('DD/MM/YYYY')}
           </li>
           <li data-testid={ `customer_orders__element-card-price-${order.id}` }>
             {order.totalPrice}
