@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useNavigate } from 'react-router-dom';
 
-// import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-
+import { setStatus } from '../../../redux/userSlice';
 import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 
 import { CreateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
@@ -25,11 +26,18 @@ const DetailsAndDeliveryAddressForm = () => {
   const auth = useSelector((state) => state.UserSlice.auth);
   const { sellers } = useSelector((state) => state.SellersSlice);
   const { cart, totalPrice } = useSelector((state) => state.CartSlice);
+  const { orderId } = useSelector((state) => state.OrderSlice);
+
+  const navigate = useNavigate();
+
   const [sellerId, setSellerId] = useState(0);
 
   useEffect(() => {
+    if (orderId) {
+      navigate(`/customer/orders/${orderId}`, { replace: true });
+    }
     dispatch(getSellers(auth));
-  }, [auth, dispatch]);
+  }, [auth, dispatch, orderId]);
 
   const formik = useFormik({
     initialValues: {

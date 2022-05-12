@@ -22,9 +22,10 @@ export const extraReducers = (builder) => {
   builder.addCase(CreateOrderRequestThunk
     .fulfilled, (state, action) => {
     console.log(action.payload);
-    // if (action.payload.statusCode === statusCode) {
-    //   state.orderId = action.payload.body;
-    // }
+    const statusCode = 201;
+    if (action.payload.statusCode === statusCode) {
+      state.orderId = action.payload.body.id;
+    }
   })
     .addCase(CreateOrderRequestThunk
       .rejected, (state, action) => {
