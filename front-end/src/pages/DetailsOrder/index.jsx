@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Header from '../../components/Header';
-import DetailsStatus from './components/DetailsStatus';
-import ProductList from './components/ProductList';
-import TotalPrice from './components/TotalPrice';
+// import Header from '../../components/Header';
+// import DetailsStatus from './components/DetailsStatus';
+// import ProductList from './components/ProductList';
+// import TotalPrice from './components/TotalPrice';
 // import { ordersRequest } from '../../redux/requestThunks/ordersRequest';
 
 const DetailsOrder = () => {
@@ -16,12 +16,12 @@ const DetailsOrder = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {/* <Header />
+    // <>
+    {/* <Header />
       <DetailsStatus />
       <ProductList />
       <TotalPrice /> */}
-    </>
+    // </>
   );
 };
 

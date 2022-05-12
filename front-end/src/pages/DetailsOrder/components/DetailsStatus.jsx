@@ -1,9 +1,9 @@
 import React from 'react';
-// import { useSelector } from 'react-redux'; 
+// import { useSelector } from 'react-redux';
 
 const DetailsStatus = () => {
   // const { id, saleDate, status } = useSelector((state) => state.orderSlice.order);
-const a = "a"
+  const a = 'a';
   return (
     <div style={ { width: 500 } }>
       Detalhes do pedido
