@@ -13,4 +13,6 @@ const saleSchema = Joi.object({
   })).required(),
 });
 
+// aa
+
 module.exports = saleSchema;
