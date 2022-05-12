@@ -26,7 +26,7 @@ class OrderIdUtils {
   //   return response;
   // }
 
-  orderRequest = async ({ userId,
+  createOrder = async ({ userId,
     sellerId,
     totalPrice,
     deliveryAddress,
