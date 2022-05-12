@@ -19,8 +19,8 @@ const extraReducers = (builder) => {
   });
 };
 
-export const CartSlice = createSlice({
-  name: 'CartSlice',
+export const SellerSlice = createSlice({
+  name: 'SellerSlice',
   initialState,
   extraReducers,
   reducers: {
@@ -36,6 +36,6 @@ export const CartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setCart, removeCart, setCartByInput, setPrice } = CartSlice.actions;
+export const { setCart, removeCart, setCartByInput, setPrice } = SellerSlice.actions;
 
-export default CartSlice.reducer;
+export default SellerSlice.reducer;

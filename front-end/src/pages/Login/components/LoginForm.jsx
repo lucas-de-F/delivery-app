@@ -75,9 +75,9 @@ const LoginForm = () => {
           Login
         </button>
       </form>
-      {err === true
-        ? <div data-testid="common_login__element-invalid-email">ERRO</div>
-        : <> </> }
+      {
+        err && <div data-testid="common_login__element-invalid-email">ERRO</div>
+      }
       <RegisterButton />
     </>
   );

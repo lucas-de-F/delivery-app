@@ -14,7 +14,11 @@ export const CartSlice = createSlice({
       if (check) {
         state.cart[action.payload.name].quantity += 1;
       } else {
-        state.cart[action.payload.name] = { quantity: 1, price: action.payload.price };
+        state.cart[action.payload.name] = {
+          quantity: 1,
+          price: action.payload.price,
+          productId: action.payload.id,
+        };
       }
     },
 
@@ -24,6 +28,7 @@ export const CartSlice = createSlice({
       state.cart[action.payload.data.name] = {
         quantity: quantityNum,
         price: action.payload.data.price,
+        productId: action.payload.data.id,
       };
     },
 

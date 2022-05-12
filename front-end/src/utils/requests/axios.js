@@ -13,7 +13,6 @@ class AxiosHTTP {
     } catch (error) {
       axiosResponse = error.response;
     }
-    console.log(axiosResponse.status);
     return {
       statusCode: axiosResponse.status,
       body: axiosResponse.data,
