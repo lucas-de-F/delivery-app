@@ -11,7 +11,7 @@ class SellerUtils {
           authorization: token,
         },
       });
-      console.log(response);
+      // console.log(response);
       return response;
     }
 }
