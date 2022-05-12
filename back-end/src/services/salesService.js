@@ -13,7 +13,7 @@ const create = async (data) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber, 
-    saleDate, 
+    saleDate,
     status: 'Pendente',
   });
 
@@ -24,8 +24,11 @@ const create = async (data) => {
   return result;
 };
 
-const readOne = async (id) => Sales.findAll({ 
-  include: [{ model: Product, as: 'products' }], where: { userId: id } });
+const readOne = async (id) => Sales.findAll(
+  { 
+  include: [{ model: Product, as: 'products' }], where: { userId: id },
+  },
+);
 
 module.exports = {
   create,
