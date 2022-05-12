@@ -1,9 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import OrderRequest from '../../utils/requests/ordersRequests';
+import OrdersUtils from '../../utils/requests/ordersRequests';
 
 export const OrderRequestThunk = createAsyncThunk(
-  'OrderSlice/orderRequest', (payload) => OrderRequest.getOrdersById(payload),
+  'OrderSlice/OrderRequestThunk', (payload) => OrdersUtils.getOrdersById(payload),
+);
+
+export const CreateOrderRequestThunk = createAsyncThunk(
+  'OrderSlice/CreateOrderRequestThunk', (payload) => OrdersUtils.createOrder(payload),
 );
 
 export const extraReducers = (builder) => {
@@ -14,4 +18,16 @@ export const extraReducers = (builder) => {
     //   state.orderId = action.payload.body;
     // }
   });
+
+  builder.addCase(CreateOrderRequestThunk
+    .fulfilled, (state, action) => {
+    console.log(action.payload);
+    // if (action.payload.statusCode === statusCode) {
+    //   state.orderId = action.payload.body;
+    // }
+  })
+    .addCase(CreateOrderRequestThunk
+      .rejected, (state, action) => {
+      console.log(action.payload);
+    });
 };
