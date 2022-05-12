@@ -8,8 +8,9 @@ const create = async (req, res) => {
 
 const read = async (req, res) => {
   const { id } = req.params;
+  const { role } = req.query;
 
-  const result = await saleService.readOne(id);
+  const result = await saleService.readOne(id, role);
 
   res.status(200).json(result);
 };
