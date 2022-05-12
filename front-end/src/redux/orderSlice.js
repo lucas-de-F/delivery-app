@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { extraReducers } from './requestThunks/orderRequest';
 
 const initialState = {
-  orderId: '',
+  orders: [],
+  orderId: 0,
 };
 
 export const OrderSlice = createSlice({
