@@ -10,8 +10,9 @@ export const extraReducers = (builder) => {
   builder.addCase(OrderRequestThunk
     .fulfilled, (state, action) => {
     console.log(action.payload);
-    // if (action.payload.statusCode === statusCode) {
-    //   state.orderId = action.payload.body;
-    // }
+    const statusCode = 200;
+    if (action.payload.statusCode === statusCode) {
+      state.orders = action.payload.body;
+    }
   });
 };
