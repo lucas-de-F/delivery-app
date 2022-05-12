@@ -51,7 +51,9 @@ const createUser = async ({ name, email, password }) => {
   return token;
 };
 
-const getSellers = async () => User.findAll({ where: { role: 'seller' } });
+const getSellers = async () => User.findAll(
+  { where: { role: 'seller' }, attributes: ['id', 'name'] },
+  );
 
 module.exports = {
   login,
