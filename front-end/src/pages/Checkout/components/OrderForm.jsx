@@ -84,7 +84,7 @@ const DetailsAndDeliveryAddressForm = () => {
           value={ sellerId }
           onChange={ (event) => setSellerId(event.target.value) }
         >
-          <option value="">Selecione um vendedor</option>
+          <option disabled>Selecione um vendedor</option>
           { !sellers ? <option>No option</option> : sellers
             .map((item, i) => (
               <option
