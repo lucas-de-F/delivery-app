@@ -18,6 +18,7 @@ app.use('/products', productRoute);
 app.use('/sales', saleRoute);
 app.use('/sellers', userRoute);
 
+app.use(jwtDomainError);
 app.use(domainError);
 
 app.get('/coffee', (_req, res) => res.status(418).end());

@@ -1,6 +1,9 @@
 const { Sales, Product, SalesProducts } = require('../database/models');
 
-const findId = async (id) => Sales.findByPk(id, { include: [{ model: Product, as: 'products' }] });
+const findId = async (id) => Sales.findByPk(id, { 
+  attributes: { exclude: ['user_id', 'seller_id'] },
+  include: [{ model: Product, as: 'products' }],
+});
 
 const create = async (data) => {
   const { userId, sellerId,
