@@ -4,7 +4,7 @@ const LOCAL = 'http://localhost:3001';
 
 class OrderUtils {
   getOrdersById = async ({ auth, token }) => {
-    const roleId = auth.role === 'costumer' ? 'userId' : 'sellerId';
+    const roleId = auth.role === 'customer' ? 'userId' : 'sellerId';
     const response = await AxiosHTTP.RequestWithToken({
       url: `${LOCAL}/sales/${auth.userId}?role=${roleId}`,
       method: 'GET',
