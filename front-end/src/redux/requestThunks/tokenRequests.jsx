@@ -25,9 +25,9 @@ export const extraReducers = (builder) => {
       const { name, email, role, id } = jwtDecode(token);
       state.name = name;
       state.auth = {
+        token,
         userId: id,
         email,
-        id,
         role,
       };
 
@@ -43,6 +43,22 @@ export const extraReducers = (builder) => {
     const statusCode = 201;
     if (action.payload.statusCode === statusCode) {
       state.status = 'fulfilled';
+    }
+    try {
+      const token = action.payload.body?.token;
+
+      const { name, email, role, id } = jwtDecode(token);
+      state.name = name;
+      state.auth = {
+        token,
+        userId: id,
+        email,
+        role,
+      };
+
+      localStorage.setItem('user', JSON.stringify({ name, role, email, token }));
+    } catch (error) {
+      return console.log(error, 'ERRO');
     }
   });
 };

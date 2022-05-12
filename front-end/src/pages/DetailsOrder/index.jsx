@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import DetailsStatus from './components/DetailsStatus';
 import ProductList from './components/ProductList';
 import TotalPrice from './components/TotalPrice';
-import { ordersRequest } from '../../redux/requestThunks/ordersRequest';
+// import { ordersRequest } from '../../redux/requestThunks/ordersRequest';
 
 const DetailsOrder = () => {
   const dispatch = useDispatch();
@@ -12,15 +12,15 @@ const DetailsOrder = () => {
 
   useEffect(() => {
     // passar id do usuário pra fazer o fetch
-    dispatch(ordersRequest());
+    // dispatch(ordersRequest());
   }, [dispatch]);
 
   return (
     <>
-      <Header />
+      {/* <Header />
       <DetailsStatus />
       <ProductList />
-      <TotalPrice />
+      <TotalPrice /> */}
     </>
   );
 };
