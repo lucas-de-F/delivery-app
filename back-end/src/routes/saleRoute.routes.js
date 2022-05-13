@@ -10,7 +10,7 @@ const saleRoute = Router();
 
 saleRoute.post('/', authenticator(), validateJoi(saleSchema), saleController.create);
 
-saleRoute.get('/:id', saleController.read);
+saleRoute.get('/:id', authenticator(), saleController.read);
 
 saleRoute.put('/:id', authenticator('seller'), saleController.update);
 

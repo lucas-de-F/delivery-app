@@ -1,6 +1,9 @@
 const { Sales, Product, SalesProducts } = require('../database/models');
 
-const findId = async (id) => Sales.findByPk(id, { include: [{ model: Product, as: 'products' }] });
+const findId = async (id) => Sales.findByPk(id, { 
+  attributes: { exclude: ['user_id', 'seller_id'] },
+  include: [{ model: Product, as: 'products' }],
+});
 
 const create = async (data) => {
   const { userId, sellerId,
@@ -24,11 +27,19 @@ const create = async (data) => {
   return result;
 };
 
-const readOne = async (id) => Sales.findAll(
-  { 
-  include: [{ model: Product, as: 'products' }], where: { userId: id },
-  },
-);
+const readOne = async (id, role) => {
+  const result = await Sales.findAll(
+    { 
+      attributes: { exclude: ['user_id', 'seller_id'] },
+      include: [{ 
+        model: Product, as: 'products', through: { attributes: ['quantity'] },
+      }],
+      where: { [role]: id },
+    },
+  );
+
+  return result;
+};
 
 module.exports = {
   create,

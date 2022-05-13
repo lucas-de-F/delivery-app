@@ -15,4 +15,15 @@ const invalidNewProduct = {
   "urlImage": "http://localhost:3001/images/stella_artois_275ml.jpg"
 };
 
-module.exports = { validSeller, newProduct, invalidNewProduct };
+const validUpdateProduct = {
+  "name": "Capirinha",
+  "price": 10,
+  "urlImage": "http://localhost:3001/images/stella_artois_275ml.jpg"
+};
+
+module.exports = { 
+  validSeller,
+  newProduct,
+  invalidNewProduct,
+  validUpdateProduct,
+};

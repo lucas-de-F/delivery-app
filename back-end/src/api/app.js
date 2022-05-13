@@ -5,7 +5,7 @@ const cors = require('cors');
 require('express-async-errors');
 
 const { loginRoute, registerRoute, productRoute, saleRoute, userRoute } = require('../routes');
-const { domainError } = require('../middlewares');
+const { domainError, jwtDomainError } = require('../middlewares');
 
 const app = express();
 app.use(cors());
@@ -18,6 +18,7 @@ app.use('/products', productRoute);
 app.use('/sales', saleRoute);
 app.use('/sellers', userRoute);
 
+app.use(jwtDomainError);
 app.use(domainError);
 
 app.get('/coffee', (_req, res) => res.status(418).end());

@@ -3,7 +3,7 @@ import AxiosHTTP from './axios';
 const LOCAL = 'http://localhost:3001';
 
 class SellerUtils {
-  sellersRequest = async ({ token }) => {
+  getSellersRequest = async ({ token }) => {
     const response = await AxiosHTTP.RequestWithToken({
       url: `${LOCAL}/sellers`,
       method: 'GET',
@@ -11,7 +11,6 @@ class SellerUtils {
         authorization: token,
       },
     });
-
     return response;
   }
 }

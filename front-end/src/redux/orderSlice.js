@@ -3,6 +3,7 @@ import { extraReducers } from './requestThunks/orderRequest';
 
 const initialState = {
   orders: [],
+  orderId: 0,
 };
 
 export const OrderSlice = createSlice({
