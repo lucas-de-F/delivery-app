@@ -12,16 +12,23 @@ import { setStatus } from '../../../redux/userSlice';
 const LoginForm = () => {
   const [able, setAble] = useState(true);
   const status = useSelector((state) => state.UserSlice.status);
+  const { role } = useSelector((state) => state.UserSlice.auth);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [err, setError] = useState(false);
 
   useEffect(() => {
-    if (status === 'fulfilled') {
+    if (status === 'fulfilled' && role === 'customer') {
       navigate('/customer/products', { replace: true });
       dispatch(setStatus('pending'));
     }
-  }, [able, status, navigate, dispatch]);
+
+    if (status === 'fulfilled' && role === 'seller') {
+      navigate('/seller/orders', { replace: true });
+      dispatch(setStatus('pending'));
+    }
+  }, [able, status, navigate, dispatch, role]);
 
   const formik = useFormik({
     initialValues: {
@@ -68,9 +75,9 @@ const LoginForm = () => {
           Login
         </button>
       </form>
-      {err === true
-        ? <div data-testid="common_login__element-invalid-email">ERRO</div>
-        : <> </> }
+      {
+        err && <div data-testid="common_login__element-invalid-email">ERRO</div>
+      }
       <RegisterButton />
     </>
   );
