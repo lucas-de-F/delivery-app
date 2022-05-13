@@ -12,6 +12,4 @@ saleRoute.post('/', authenticator(), validateJoi(saleSchema), saleController.cre
 
 saleRoute.get('/:id', authenticator(), saleController.read);
 
-saleRoute.put('/:id', authenticator('seller'), saleController.update);
-
 module.exports = saleRoute;

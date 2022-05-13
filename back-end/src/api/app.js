@@ -4,7 +4,8 @@ const cors = require('cors');
 
 require('express-async-errors');
 
-const { loginRoute, registerRoute, productRoute, saleRoute, userRoute } = require('../routes');
+const { loginRoute, registerRoute, productRoute, 
+  saleRoute, userRoute, deliveryRoute } = require('../routes');
 const { domainError, jwtDomainError } = require('../middlewares');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use('/register', registerRoute);
 app.use('/products', productRoute);
 app.use('/sales', saleRoute);
 app.use('/sellers', userRoute);
+app.use('/delivery', deliveryRoute);
 
 app.use(jwtDomainError);
 app.use(domainError);
