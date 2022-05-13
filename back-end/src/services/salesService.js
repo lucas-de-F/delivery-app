@@ -32,7 +32,7 @@ const readOne = async (id, role) => {
     { 
       attributes: { exclude: ['user_id', 'seller_id'] },
       include: [{ 
-        model: Product, as: 'products', through: { attributes: ['quantity'] },
+        model: Product, as: 'products',
       }],
       where: { [role]: id },
     },
