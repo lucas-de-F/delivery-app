@@ -9,18 +9,6 @@ import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 
 import { CreateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
-function formatDate(date) {
-  const d = new Date(date);
-  let month = `${d.getMonth() + 1}`;
-  let day = `${d.getDate()}`;
-  const year = d.getFullYear();
-
-  if (month.length < 2) { month = `0${month}`; }
-  if (day.length < 2) { day = `0${day}`; }
-
-  return [year, month, day].join('-');
-}
-
 const DetailsAndDeliveryAddressForm = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.UserSlice.auth);
@@ -30,14 +18,14 @@ const DetailsAndDeliveryAddressForm = () => {
 
   const navigate = useNavigate();
 
-  const [sellerId, setSellerId] = useState(0);
+  const [sellerId, setSellerId] = useState(2);
 
   useEffect(() => {
     if (orderId) {
-      navigate(`/customer/orders/${orderId}`, { replace: true });
+      navigate(`/customer/orders/${orderId}`);
     }
     dispatch(getSellers(auth));
-  }, [auth, dispatch, orderId]);
+  }, [auth, dispatch, navigate, orderId]);
 
   const formik = useFormik({
     initialValues: {
@@ -62,10 +50,11 @@ const DetailsAndDeliveryAddressForm = () => {
           sellerId,
           totalPrice: Number(totalPrice.split(',').join('.')),
           ...values,
-          saleDate: formatDate(newDate),
+          saleDate: new Date(newDate).toString(),
           products: mappedCartArray,
           token,
         };
+        console.log(params);
         dispatch(CreateOrderRequestThunk(params))
           .then(unwrapResult).then().catch((e) => console.log(e));
         setStatus('');
@@ -84,7 +73,7 @@ const DetailsAndDeliveryAddressForm = () => {
           value={ sellerId }
           onChange={ (event) => setSellerId(event.target.value) }
         >
-          <option disabled>Selecione um vendedor</option>
+          {/* <option disabled>Selecione um vendedor</option> */}
           { !sellers ? <option>No option</option> : sellers
             .map((item, i) => (
               <option
