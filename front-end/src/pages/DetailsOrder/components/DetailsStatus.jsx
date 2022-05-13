@@ -63,6 +63,7 @@ const DetailsStatus = () => {
               <button
                 type="button"
                 data-testid={ DELCHECK }
+                disabled={ orderDetail.status !== 'Entregue' }
               >
                 Marcar como entregue
               </button>
