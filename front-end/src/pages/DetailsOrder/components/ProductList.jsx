@@ -1,12 +1,8 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
 
-const ProductList = () => {
-  // const { products } = useSelector((state) => state.orderSlice.order);
-  const a = 'a';
-  return (
-    <ol>
-      {/* { !products ? 'carrinho vazio' : Object.keys(products).map((payload, key) => (
+const ProductList = () => (
+  <ol>
+    {/* { !products ? 'carrinho vazio' : Object.keys(products).map((payload, key) => (
         <li
           key={ key }
           style={ { display: 'flex', justifyContent: 'space-between', margin: 10 } }
@@ -43,8 +39,7 @@ const ProductList = () => {
           </div>
         </li>
       ))} */}
-    </ol>
-  );
-};
+  </ol>
+);
 
 export default ProductList;

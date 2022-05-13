@@ -1,13 +1,10 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 
-const DetailsStatus = () => {
-  // const { id, saleDate, status } = useSelector((state) => state.orderSlice.order);
-  const a = 'a';
-  return (
-    <div style={ { width: 500 } }>
-      Detalhes do pedido
-      {/* <div>
+const DetailsStatus = () => (
+  <div style={ { width: 500 } }>
+    Detalhes do pedido
+    {/* <div>
         <ul style={ { display: 'flex' } }>
           <li
             data-testid="customer_order_details__element-order-details-label-order-id"
@@ -38,8 +35,6 @@ const DetailsStatus = () => {
           </button>
         </ul>
       </div> */}
-    </div>
-  );
-};
-
+  </div>
+);
 export default DetailsStatus;
