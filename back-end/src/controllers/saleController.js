@@ -19,8 +19,8 @@ const read = async (req, res) => {
   res.status(200).json(result);
 };
 
-const update = async (req, res) => {
-  await saleService.update(req.params.id, req.body);
+const updateDelivery = async (req, res) => {
+  await saleService.partialUpdateDelivery(req.params.id, req.body);
 
   res.status(204).send();
 };
@@ -28,5 +28,5 @@ const update = async (req, res) => {
 module.exports = {
   create,
   read,
-  update,
+  updateDelivery,
 };
