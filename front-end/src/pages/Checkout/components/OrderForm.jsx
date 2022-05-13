@@ -8,6 +8,7 @@ import { setStatus } from '../../../redux/userSlice';
 import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 
 import { CreateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
+import { setOrderId } from '../../../redux/orderSlice';
 
 const DetailsAndDeliveryAddressForm = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,9 @@ const DetailsAndDeliveryAddressForm = () => {
   const [sellerId, setSellerId] = useState(2);
 
   useEffect(() => {
-    if (orderId) {
+    if (orderId !== null) {
       navigate(`/customer/orders/${orderId}`);
+      dispatch(setOrderId(null));
     }
     dispatch(getSellers(auth));
   }, [auth, dispatch, navigate, orderId]);
