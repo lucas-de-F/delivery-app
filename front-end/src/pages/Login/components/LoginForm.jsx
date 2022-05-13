@@ -19,12 +19,12 @@ const LoginForm = () => {
   const [err, setError] = useState(false);
 
   useEffect(() => {
-    if (status === 'fulfilled' && role === 'customer') {
-      navigate('/customer/products', { replace: true });
-      dispatch(setStatus('pending'));
-    }
+    // if (status === 'fulfilled' && role === 'customer') {
+    //   navigate('/customer/products', { replace: true });
+    //   dispatch(setStatus('pending'));
+    // }
 
-    if (status === 'fulfilled' && role === 'seller') {
+    if (status === 'fulfilled' && role === 'customer') {
       navigate('/seller/orders', { replace: true });
       dispatch(setStatus('pending'));
     }
