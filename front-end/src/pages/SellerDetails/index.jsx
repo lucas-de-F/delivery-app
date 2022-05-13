@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { HeaderSeller } from '../Seller/components';
+import SectionDetails from './components/SectionDetails';
 
 function SellerDetails() {
   return (
@@ -8,7 +9,7 @@ function SellerDetails() {
       <HeaderSeller />
       <section>
         <div>
-          <p>fefefef</p>
+          <SectionDetails />
         </div>
       </section>
     </>
