@@ -1,7 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import utc from 'dayjs/plugin/utc';
+import dayjs from 'dayjs/';
 
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+
+import GenerateId from '../../../utils/generateId';
+
+dayjs.extend(utc);
 
 const SectionDetails = () => {
   const orders = useSelector((state) => state.OrderSlice.orders);
@@ -17,10 +23,12 @@ const SectionDetails = () => {
       <div>
         <div>
           <p data-testod="seller_order_details__element-order-details-label-order-id">
-            { response.id }
+            PEDIDO
+            {' '}
+            { GenerateId(response.id) }
           </p>
           <p data-testid="seller_order_details__element-order-details-label-order-date">
-            { response.saleDate }
+            {`${dayjs.utc(response.saleDate).format('DD/MM/YYYY')}`}
           </p>
           <p
             data-testid="
