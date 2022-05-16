@@ -56,7 +56,6 @@ const DetailsAndDeliveryAddressForm = () => {
           products: mappedCartArray,
           token,
         };
-        console.log(params);
         dispatch(CreateOrderRequestThunk(params))
           .then(unwrapResult).then().catch((e) => console.log(e));
         setStatus('');
