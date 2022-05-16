@@ -1,46 +1,32 @@
-/* import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import {
+  useLocation,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import useAuth from '../utils/hooks/hookAuth';
 
-/* const ROLES = [
-  'customer',
-  'seller',
-  'administrator',
-];
-
-// const isAuthentcated = () => false;
-
-const PrivateRoute = ({ allowedRoles }) => {
-  const { auth } = useSelector((state) => state.UserSlice);
-  // auth.roles = [ consumer ]
-  // auth.roles.find((role) => allowedRoles.include(role))
-
-  const handlerAuthorization = () => {
-    if (auth?.roles?.find((role) => allowedRoles?.include(role))) {
+export default function RequireAuth({ Urole }) {
+  const { auth } = useAuth();
+  const location = useLocation();
+  console.log(auth.role === Urole);
+  if (auth.role === Urole) {
+    if (Urole === 'customer') {
       return <Outlet />;
     }
-    if (auth?.user) {
-      return <Navigate to="/unauthorized" replace />;
+    if (Urole === 'seller') {
+      return <Outlet />;
     }
-    return <Navigate to="/login" replace />;
-  };
+  }
 
-  return (
-    handlerAuthorization()
-  );
-  /* return (
-    <Route
-      { ...rest }
-      render={ (props) => (
-        isAuthentcated ? (<Component { ...props } />) : (<Navigate replace to="/login" />)
-      ) }
-    />
-  );
+  if (auth?.user) {
+    return <Navigate to="/login" state={ { from: location } } replace />;
+  }
+
+  return <Navigate to="/login" state={ { from: location } } replace />;
+}
+
+RequireAuth.propTypes = {
+  Urole: PropTypes.oneOfType([PropTypes.string]).isRequired,
 };
-
-export default PrivateRoute;
-
-PrivateRoute.propTypes = {
-  allowedRoles: PropTypes.string.isRequired,
-}; */
