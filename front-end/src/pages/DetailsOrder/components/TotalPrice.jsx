@@ -7,7 +7,7 @@ const TotalPrice = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
 
   useEffect(() => {
-    if (orders && orders.length > 0) {
+    if (orders && orders.length === (pageId)) {
       const findOrder = orders.find((order) => order.id === pageId);
       setTotalPrice(findOrder.totalPrice);
     }
