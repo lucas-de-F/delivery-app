@@ -8,6 +8,9 @@ const { authenticator } = require('../middlewares');
 
 const deliveryRoute = Router();
 
-deliveryRoute.patch('/:id', authenticator(), validateJoi(deliverySchema), saleController.updateDelivery);
+deliveryRoute.patch(
+  '/:id',
+  authenticator(), validateJoi(deliverySchema), saleController.updateDelivery,
+);
 
 module.exports = deliveryRoute;
