@@ -15,17 +15,20 @@ class OrderUtils {
     return response;
   }
 
-  // getOrders = async ({ token }) => {
-  //   const response = await AxiosHTTP.Request({
-  //     url: `${LOCAL}/sales`,
-  //     method: 'GET',
-  //     headers: {
-  //       authorization: token,
-  //     },
-  //   });
+  updateProductStatus = async ({ token, id, deliveryStatus }) => {
+    const response = await AxiosHTTP.RequestWithToken({
+      url: `${LOCAL}/delivery/${id}`,
+      method: 'PATCH',
+      headers: {
+        authorization: token,
+      },
+      body: {
+        status: deliveryStatus,
+      },
+    });
 
-  //   return response;
-  // }
+    return response;
+  }
 
   createOrder = async ({
     userId,

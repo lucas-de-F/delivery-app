@@ -10,6 +10,11 @@ export const CreateOrderRequestThunk = createAsyncThunk(
   'OrderSlice/CreateOrderRequestThunk', (payload) => OrdersUtils.createOrder(payload),
 );
 
+export const UpdateOrderRequestThunk = createAsyncThunk(
+  'OrderSlice/UpdateOrderRequestThunk',
+  (payload) => OrdersUtils.updateProductStatus(payload),
+);
+
 export const extraReducers = (builder) => {
   builder.addCase(OrderRequestThunk
     .fulfilled, (state, action) => {
@@ -30,4 +35,13 @@ export const extraReducers = (builder) => {
       .rejected, (state, action) => {
       console.log(action.payload);
     });
+
+  builder.addCase(UpdateOrderRequestThunk
+    .fulfilled, (state, action) => {
+    const statusCode = 204;
+
+    if (action.payload.statusCode === statusCode) {
+      state.status = 'Status';
+    }
+  });
 };
