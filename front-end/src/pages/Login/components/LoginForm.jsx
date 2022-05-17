@@ -3,12 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
-import jwtDecode from 'jwt-decode';
 
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
-import { setStatus, setAuth, setName } from '../../../redux/userSlice';
+import { setStatus } from '../../../redux/userSlice';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
@@ -20,8 +19,8 @@ const LoginForm = () => {
   const [err, setError] = useState(false);
 
   useEffect(() => {
-    console.log(auth);
     if (status === 'fulfilled' && auth.role === 'customer') {
+      console.log('costumer');
       navigate('/customer/products', { replace: true });
       dispatch(setStatus('pending'));
     }
@@ -29,19 +28,6 @@ const LoginForm = () => {
     if (status === 'fulfilled' && auth.role === 'seller') {
       navigate('/seller/orders', { replace: true });
       dispatch(setStatus('pending'));
-    }
-
-    try {
-      const { token } = JSON.parse(localStorage.getItem('user'));
-      if (token) {
-        const { name, email, id, role } = jwtDecode(token);
-
-        dispatch(setAuth({ email, userId: id, token, role }));
-        dispatch(setName(name));
-        dispatch(setStatus('fulfilled'));
-      }
-    } catch (e) {
-      navigate('/login');
     }
   }, [able, status, navigate, dispatch, auth]);
 
