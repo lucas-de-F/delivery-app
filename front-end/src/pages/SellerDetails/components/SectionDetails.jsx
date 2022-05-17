@@ -3,17 +3,16 @@ import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs/';
 
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 
 import GenerateId from '../../../utils/generateId';
+import ButtonStatus from './ButtonStatus';
 
 dayjs.extend(utc);
 
 const SectionDetails = () => {
   const orders = useSelector((state) => state.OrderSlice.orders);
 
-  const location = useLocation();
-  const id = location.pathname[location.pathname.length - 1];
+  const id = Number(window.location.pathname.split('/')[3]);
 
   const response = orders.find((i) => i.id === Number(id));
 
@@ -36,12 +35,21 @@ const SectionDetails = () => {
           >
             { response.status }
           </p>
-          <p data-testid="seller_order_details__button-preparing-check">
-            PREPARAR PEDIDO
-          </p>
-          <p data-testid="seller_order_details__button-dispatch-check">
-            SAIU PARA ENTREGA
-          </p>
+          <ButtonStatus
+            dataId="seller_order_details__button-preparing-check"
+            title="PREPARAR PEDIDO"
+            name="preparando"
+            status={ response.status }
+            id={ response.id }
+          />
+
+          <ButtonStatus
+            dataId="seller_order_details__button-dispatch-check"
+            title="SAIU PARA ENTREGA"
+            name="sair-entrega"
+            status={ response.status }
+            id={ response.id }
+          />
           {
             id
               && response.products.map((item, i) => (
