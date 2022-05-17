@@ -3,39 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setCartByInput, removeCart } from '../../redux/cartSlice';
 
-/* const mocks = [
-  {
-    quantity: 1,
-    name: 'NOME PRODUTO1',
-    price: 5.50,
-  },
-  {
-    quantity: 3,
-    name: 'NOME PRODUTO2',
-    price: 5.50,
-  },
-  {
-    quantity: 1,
-    name: 'NOME PRODUTO3',
-    price: 3.44,
-  },
-  {
-    quantity: 4,
-    name: 'NOME PRODUTO4',
-    price: 5.50,
-  },
-  {
-    quantity: 1,
-    name: 'NOME PRODUTO5',
-    price: 5.50,
-  },
-  {
-    quantity: 3,
-    name: 'NOME PRODUTO6',
-    price: 3.44,
-  },
-]; */
-
 const ProductList = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.CartSlice);

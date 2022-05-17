@@ -15,11 +15,14 @@ const Products = () => {
   const { cart } = useSelector((state) => state.CartSlice);
 
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.getItem('user'));
-
-    if (token) {
-      dispatch(productsRequest(token));
-      setStatus('');
+    try {
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      if (token) {
+        dispatch(productsRequest(token));
+        setStatus('');
+      }
+    } catch (err) {
+      return err;
     }
   }, [dispatch]);
 

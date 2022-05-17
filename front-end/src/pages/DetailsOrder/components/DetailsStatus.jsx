@@ -21,7 +21,7 @@ const DetailsStatus = () => {
   const { sellers } = useSelector((state) => state.SellersSlice);
 
   useEffect(() => {
-    if (orders && orders.length > 0) {
+    if (orders && orders.length <= pageId && orders.length > 0) {
       const findOrder = orders.find((order) => order.id === pageId);
       const findSeller = sellers.find((seller) => seller.id === findOrder.sellerId);
 

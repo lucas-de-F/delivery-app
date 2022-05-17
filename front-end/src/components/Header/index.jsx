@@ -11,9 +11,8 @@ const Header = () => {
     if (location.pathname !== '/customer/products') {
       return navigate('/customer/products', { replace: true });
     }
-    window.localStorage.clear();
-
     navigate('/login', { replace: true });
+    window.localStorage.clear();
   };
 
   return (
