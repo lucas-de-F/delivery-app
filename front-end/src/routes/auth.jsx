@@ -10,7 +10,6 @@ import useAuth from '../utils/hooks/hookAuth';
 export default function RequireAuth({ Urole }) {
   const { auth } = useAuth();
   const location = useLocation();
-  console.log(auth.role === Urole);
   if (auth.role === Urole) {
     if (Urole === 'customer') {
       return <Outlet />;

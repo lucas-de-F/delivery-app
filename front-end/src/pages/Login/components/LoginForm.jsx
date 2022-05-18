@@ -20,7 +20,6 @@ const LoginForm = () => {
   const [err, setError] = useState(false);
 
   useEffect(() => {
-    console.log(auth);
     if (status === 'fulfilled' && auth.role === 'customer') {
       navigate('/customer/products', { replace: true });
       dispatch(setStatus('pending'));
