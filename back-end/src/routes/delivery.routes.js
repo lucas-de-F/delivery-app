@@ -10,7 +10,9 @@ const deliveryRoute = Router();
 
 deliveryRoute.patch(
   '/:id',
-  authenticator(), validateJoi(deliverySchema), saleController.updateDelivery,
+  authenticator(),
+  validateJoi(deliverySchema),
+  saleController.updateDelivery,
 );
 
 module.exports = deliveryRoute;
