@@ -12,20 +12,21 @@ dayjs.extend(utc);
 
 const SectionDetails = () => {
   const pageId = Number(window.location.pathname.split('/')[3]);
-  const { ordersById } = useSelector((state) => state.OrderSlice);
+  const { orders, ordersById } = useSelector((state) => state.OrderSlice);
   const { auth } = useSelector((state) => state.UserSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(OrderRequestThunk({ auth, token: auth.token }))
-      .then(() => dispatch(getOrdersById({ pageId })));
+    dispatch(OrderRequestThunk({ auth, token: auth.token }));
+    dispatch(getOrdersById({ pageId }));
     console.log('asdasds');
     // if (orders.length > 0) dispatch(getOrdersById({ pageId }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]);
+  }, [orders]);
   return (
     <>
       <h3>Detalhe do Pedido</h3>
+      {console.log(ordersById)}
       {Object.keys(ordersById).length > 0 && (
         <div>
           <div>

@@ -16,8 +16,9 @@ const ProductList = () => {
     if (orders.length > 0 && orders.length <= (pageId)) {
       const findOrder = orders.find((order) => order.id === pageId);
       setProducts(findOrder.products);
+      console.log(products);
     }
-  }, [orders, pageId]);
+  }, [orders, pageId, products]);
 
   return (
     <div>

@@ -11,6 +11,7 @@ const TotalPrice = () => {
       const findOrder = orders.find((order) => order.id === pageId);
       setTotalPrice(findOrder.totalPrice);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders, pageId]);
 
   return (
