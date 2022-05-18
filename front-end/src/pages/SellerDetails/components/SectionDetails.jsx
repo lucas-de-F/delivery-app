@@ -1,122 +1,120 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs/';
 
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import GenerateId from '../../../utils/generateId';
 import ButtonStatus from './ButtonStatus';
+import { getOrdersById } from '../../../redux/orderSlice';
+import { OrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
 dayjs.extend(utc);
 
 const SectionDetails = () => {
-  const orders = useSelector((state) => state.OrderSlice.orders);
+  const pageId = Number(window.location.pathname.split('/')[3]);
+  const { ordersById } = useSelector((state) => state.OrderSlice);
+  const { auth } = useSelector((state) => state.UserSlice);
+  const dispatch = useDispatch();
 
-  const id = Number(window.location.pathname.split('/')[3]);
-  const response = orders.find((i) => i.id === Number(id));
-
+  useEffect(() => {
+    dispatch(OrderRequestThunk({ auth, token: auth.token }))
+      .then(() => dispatch(getOrdersById({ pageId })));
+    console.log('asdasds');
+    // if (orders.length > 0) dispatch(getOrdersById({ pageId }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth]);
   return (
     <>
       <h3>Detalhe do Pedido</h3>
-      <div>
+      {Object.keys(ordersById).length > 0 && (
         <div>
-          <p data-testod="seller_order_details__element-order-details-label-order-id">
-            PEDIDO
-            {' '}
-            { GenerateId(response.id) }
-          </p>
-          <p data-testid="seller_order_details__element-order-details-label-order-date">
-            {`${dayjs.utc(response.saleDate).format('DD/MM/YYYY')}`}
-          </p>
-          <p
-            data-testid="
+          <div>
+            <p data-testod="seller_order_details__element-order-details-label-order-id">
+              PEDIDO
+              {' '}
+              {GenerateId(ordersById.id)}
+            </p>
+            <p data-testid="seller_order_details__element-order-details-label-order-date">
+              {`${dayjs.utc(ordersById.saleDate).format('DD/MM/YYYY')}`}
+            </p>
+            <p
+              data-testid="
             seller_order_details__element-order-details-label-delivery-status"
-          >
-            { response.status }
-          </p>
-          <ButtonStatus
-            dataId="seller_order_details__button-preparing-check"
-            title="PREPARAR PEDIDO"
-            status={ response.status }
-            id={ response.id }
-          />
+            >
+              {ordersById.status}
+            </p>
+            <ButtonStatus
+              dataId="seller_order_details__button-preparing-check"
+              title="PREPARAR PEDIDO"
+              status={ ordersById.status }
+              id={ ordersById.id }
+            />
 
-          <ButtonStatus
-            dataId="seller_order_details__button-dispatch-check"
-            title="SAIU PARA ENTREGA"
-            status={ response.status }
-            id={ response.id }
-          />
-          {
-            id
-              && response.products.map((item, i) => (
+            <ButtonStatus
+              dataId="seller_order_details__button-dispatch-check"
+              title="SAIU PARA ENTREGA"
+              status={ ordersById.status }
+              id={ ordersById.id }
+            />
+            {pageId
+              && ordersById.products.map((item, i) => (
                 <div key={ `key-${i}` }>
                   <div>
                     <p
-                      data-testid={
-                        `seller_order_details__element-order-table-item-number-${item.id}`
-                      }
+                      data-testid={ `seller_order_details__element
+-order-table-item-number-${item.id}` }
                     >
                       Item
                       {' '}
-                      { item.id }
+                      {item.id}
                     </p>
                     <p
-                      data-testid={
-                        `seller_order_details__element-order-table-name-${item.id}`
-                      }
+                      data-testid={ `seller_order_details_
+_element-order-table-name-${item.id}` }
                     >
                       Descrição
                       {' '}
-                      { item.name }
+                      {item.name}
                     </p>
                     <p
-                      data-testid={
-                        `seller_order_details__element-order-table-quantity-${item.id}`
-                      }
+                      data-testid={ `seller_order_details_
+_element-order-table-quantity-${item.id}` }
                     >
                       Quantidade
                       {' '}
-                      { item.SalesProducts.quantity }
+                      {item.SalesProducts.quantity}
                     </p>
                     <p
-                      data-testid={
-                        `seller_order_details__element-order-table-unit-price-${item.id}`
-                      }
+                      data-testid={ `seller_order_details_
+_element-order-table-unit-price-${item.id}` }
                     >
                       Valor Unitário
                       {' '}
-                      { item.price }
+                      {item.price}
                     </p>
                     <p
-                      data-testid={
-                        `seller_order_details__element-order-table-sub-total-${item.id}`
-                      }
+                      data-testid={ `seller_order_details_
+_element-order-table-sub-total-${item.id}` }
                     >
                       Sub-total
                       {' '}
-                      {
-                        (Number(item.price) * item.SalesProducts.quantity).toFixed(2)
-                      }
+                      {(
+                        Number(item.price) * item.SalesProducts.quantity
+                      ).toFixed(2)}
                     </p>
                   </div>
                 </div>
-              ))
-          }
-          {
-            id
-              && (
-                <div>
-                  <h2 data-testid="seller_order_details__element-order-total-price">
-                    {
-                      response.totalPrice
-                    }
-                  </h2>
-                </div>
-              )
-          }
+              ))}
+            {pageId && (
+              <div>
+                <h2 data-testid="seller_order_details__element-order-total-price">
+                  {ordersById.totalPrice}
+                </h2>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

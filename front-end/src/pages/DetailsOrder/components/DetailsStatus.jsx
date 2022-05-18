@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import generateId from '../../../utils/generateId';
+import { getOrdersById } from '../../../redux/orderSlice';
+import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 
 const utc = require('dayjs/plugin/utc');
 const dayjs = require('dayjs');
@@ -13,26 +15,30 @@ const DELSTAT = 'customer_order_details__element-order-details-label-delivery-st
 const DELCHECK = 'customer_order_details__button-delivery-check';
 
 const DetailsStatus = () => {
+  const dispatch = useDispatch();
   const [orderDetail, setOrderDetail] = useState(null);
   const [sellerDetail, setSellerDetail] = useState(null);
 
   const pageId = Number(window.location.pathname.split('/')[3]);
-  const { orders } = useSelector((state) => state.OrderSlice);
+  const { auth } = useSelector((state) => state.UserSlice);
+  const { orders, ordersById } = useSelector((state) => state.OrderSlice);
   const { sellers } = useSelector((state) => state.SellersSlice);
 
   useEffect(() => {
-    if (orders && orders.length <= pageId && orders.length > 0) {
-      const findOrder = orders.find((order) => order.id === pageId);
-      const findSeller = sellers.find((seller) => seller.id === findOrder.sellerId);
+    dispatch(getOrdersById({ pageId }));
+    dispatch(getSellers(auth));
+    if (orders && orders.length <= (pageId) && ordersById?.sellerId) {
+      const findSeller = sellers.find((seller) => seller.id === ordersById.sellerId);
 
       setSellerDetail(findSeller);
-      setOrderDetail(findOrder);
+      setOrderDetail(ordersById);
     }
-  }, [orders, pageId, sellers, orderDetail]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orders, ordersById]);
 
   return (
     <div>
-      {orderDetail && (
+      {orderDetail && sellerDetail && (
         <div style={ { width: 500 } }>
           Detalhes do pedido
           <div>

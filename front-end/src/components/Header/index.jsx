@@ -1,16 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const name = useSelector((state) => state.UserSlice.name);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleClick = () => {
-    if (location.pathname !== '/customer/products') {
-      return navigate('/customer/products', { replace: true });
-    }
     navigate('/login', { replace: true });
     window.localStorage.clear();
   };

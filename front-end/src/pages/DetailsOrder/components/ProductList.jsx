@@ -13,12 +13,7 @@ const ProductList = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
 
   useEffect(() => {
-<<<<<<< HEAD
-    if (orders && orders.length <= pageId && orders.length > 0) {
-      console.log(pageId);
-=======
-    if (orders && orders.length >= (pageId)) {
->>>>>>> 076342528654a3587268ee4c0e6905dc5c42fc54
+    if (orders.length > 0 && orders.length <= (pageId)) {
       const findOrder = orders.find((order) => order.id === pageId);
       setProducts(findOrder.products);
     }

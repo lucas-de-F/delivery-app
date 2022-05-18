@@ -6,7 +6,7 @@ import { UpdateOrderRequestThunk } from '../../../redux/requestThunks/orderReque
 function ButtonStatus(data) {
   const [orderStatus, setOrderStatus] = useState(false);
   const { token } = JSON.parse(localStorage.getItem('user'));
-  const { dataId, title, status, id } = data;
+  const { dataId, title, status, id, Click } = data;
 
   const dispatch = useDispatch();
 
@@ -39,10 +39,6 @@ function ButtonStatus(data) {
   };
 
   useEffect(() => {
-    if (orderStatusState) {
-      window.location.reload();
-      return;
-    }
     verifyStatus(status, title);
   }, [orderStatusState, status, title, token]);
 
@@ -50,7 +46,10 @@ function ButtonStatus(data) {
     <button
       type="button"
       data-testi={ `${dataId}` }
-      onClick={ () => handleClick(title) }
+      onClick={ () => {
+        handleClick(title);
+        Click();
+      } }
       disabled={ orderStatus }
     >
       { title }
