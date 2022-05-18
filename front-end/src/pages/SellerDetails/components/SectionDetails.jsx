@@ -38,7 +38,6 @@ const SectionDetails = () => {
           <ButtonStatus
             dataId="seller_order_details__button-preparing-check"
             title="PREPARAR PEDIDO"
-            name="preparando"
             status={ response.status }
             id={ response.id }
           />
@@ -46,7 +45,6 @@ const SectionDetails = () => {
           <ButtonStatus
             dataId="seller_order_details__button-dispatch-check"
             title="SAIU PARA ENTREGA"
-            name="sair-entrega"
             status={ response.status }
             id={ response.id }
           />

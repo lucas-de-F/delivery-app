@@ -1,49 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { UpdateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
 function ButtonStatus(data) {
-  const { dataId, title, status, id, name } = data;
-
-  const [buttonDisabled, setButtonDisabled] = useState(false);
-
+  const [orderStatus, setOrderStatus] = useState(false);
   const { token } = JSON.parse(localStorage.getItem('user'));
+  const { dataId, title, status, id } = data;
 
   const dispatch = useDispatch();
 
-  const handleClick = (n) => {
-    if (n.includes('PREPARAR PEDIDO')) {
-      dispatch(UpdateOrderRequestThunk({ token, id, deliveryStatus: 'Preparando' }));
-      return setButtonDisabled(true);
-    }
+  const verifyStatus = (s, t) => {
+    if (s && s !== 'Pendente') {
+      if (s === 'Preparando' && t.includes('PREPARAR PEDIDO')) {
+        setOrderStatus(true);
+        return;
+      }
 
-    if (n.includes('SAIU PARA ENTREGA')) {
+      if (s === 'Em Trânsito') {
+        setOrderStatus(true);
+      }
+    }
+  };
+
+  const handleClick = (n) => {
+    if (status) {
+      if (n.includes('PREPARAR PEDIDO')) {
+        dispatch(UpdateOrderRequestThunk({ token, id, deliveryStatus: 'Preparando' }));
+        setOrderStatus(true);
+        return;
+      }
+
       dispatch(UpdateOrderRequestThunk({ token, id, deliveryStatus: 'Em Trânsito' }));
-      return setButtonDisabled(true);
+      setOrderStatus(true);
     }
   };
 
   useEffect(() => {
-    if (status === 'Pendente') {
-      return setButtonDisabled(false);
-    }
-
-    if (status === 'Em Trânsito') {
-      return setButtonDisabled(true);
-    }
-
-    if (status === 'Preparando' && name === 'preparando') {
-      console.log(status);
-      return setButtonDisabled(true);
-    }
-  }, [buttonDisabled, name, status]);
+    verifyStatus(status, title);
+  }, [status, title]);
 
   return (
     <button
       type="button"
       data-testi={ `${dataId}` }
       onClick={ () => handleClick(title) }
-      disabled={ buttonDisabled }
+      disabled={ orderStatus }
     >
       { title }
     </button>
