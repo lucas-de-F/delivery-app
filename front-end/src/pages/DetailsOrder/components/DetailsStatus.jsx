@@ -32,7 +32,7 @@ const DetailsStatus = () => {
 
   return (
     <div>
-      { orderDetail && (
+      {orderDetail && (
         <div style={ { width: 500 } }>
           Detalhes do pedido
           <div>

@@ -4,6 +4,7 @@ import { extraReducers } from './requestThunks/orderRequest';
 const initialState = {
   orders: [],
   orderId: null,
+  status: '',
 };
 
 export const OrderSlice = createSlice({
@@ -14,10 +15,14 @@ export const OrderSlice = createSlice({
     setOrderId: (state, action) => {
       state.orderId = action.payload;
     },
+
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setOrderId } = OrderSlice.actions;
+export const { setOrderId, setStatus } = OrderSlice.actions;
 
 export default OrderSlice.reducer;

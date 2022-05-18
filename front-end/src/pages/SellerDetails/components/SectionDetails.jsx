@@ -1,14 +1,18 @@
 import React from 'react';
+import utc from 'dayjs/plugin/utc';
+import dayjs from 'dayjs/';
+
 import { useSelector } from 'react-redux';
 
-import { useLocation } from 'react-router-dom';
+import GenerateId from '../../../utils/generateId';
+import ButtonStatus from './ButtonStatus';
+
+dayjs.extend(utc);
 
 const SectionDetails = () => {
   const orders = useSelector((state) => state.OrderSlice.orders);
 
-  const location = useLocation();
-  const id = location.pathname[location.pathname.length - 1];
-
+  const id = Number(window.location.pathname.split('/')[3]);
   const response = orders.find((i) => i.id === Number(id));
 
   return (
@@ -17,10 +21,12 @@ const SectionDetails = () => {
       <div>
         <div>
           <p data-testod="seller_order_details__element-order-details-label-order-id">
-            { response.id }
+            PEDIDO
+            {' '}
+            { GenerateId(response.id) }
           </p>
           <p data-testid="seller_order_details__element-order-details-label-order-date">
-            { response.saleDate }
+            {`${dayjs.utc(response.saleDate).format('DD/MM/YYYY')}`}
           </p>
           <p
             data-testid="
@@ -28,12 +34,19 @@ const SectionDetails = () => {
           >
             { response.status }
           </p>
-          <p data-testid="seller_order_details__button-preparing-check">
-            PREPARAR PEDIDO
-          </p>
-          <p data-testid="seller_order_details__button-dispatch-check">
-            SAIU PARA ENTREGA
-          </p>
+          <ButtonStatus
+            dataId="seller_order_details__button-preparing-check"
+            title="PREPARAR PEDIDO"
+            status={ response.status }
+            id={ response.id }
+          />
+
+          <ButtonStatus
+            dataId="seller_order_details__button-dispatch-check"
+            title="SAIU PARA ENTREGA"
+            status={ response.status }
+            id={ response.id }
+          />
           {
             id
               && response.products.map((item, i) => (

@@ -14,6 +14,7 @@ import DetailsOrder from './pages/DetailsOrder';
 import Orders from './pages/Orders';
 import SellerPage from './pages/Seller';
 import SellerDetails from './pages/SellerDetails';
+import NotFound from './pages/NotFound';
 
 // import DetailsOrder from './pages/DetailsOrder';
 import PrivateRoute from './routes/auth';
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/customer/orders/:orderId" element={ <DetailsOrder /> } />
         </Route>
 
+        <Route path="*" element={ <NotFound /> } />
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/login" element={ <Login /> } />
         <Route exact path="/" element={ <Navigate replace to="/login" /> } />
