@@ -13,7 +13,6 @@ const SectionDetails = () => {
   const orders = useSelector((state) => state.OrderSlice.orders);
 
   const id = Number(window.location.pathname.split('/')[3]);
-
   const response = orders.find((i) => i.id === Number(id));
 
   return (

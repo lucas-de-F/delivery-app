@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { UpdateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
@@ -10,6 +10,8 @@ function ButtonStatus(data) {
 
   const dispatch = useDispatch();
 
+  const orderStatusState = useSelector((state) => state.OrderSlice.status);
+
   const verifyStatus = (s, t) => {
     if (s && s !== 'Pendente') {
       if (s === 'Preparando' && t.includes('PREPARAR PEDIDO')) {
@@ -17,7 +19,7 @@ function ButtonStatus(data) {
         return;
       }
 
-      if (s === 'Em Trânsito') {
+      if (s === 'Em Trânsito' || s === 'Entregue') {
         setOrderStatus(true);
       }
     }
@@ -37,8 +39,12 @@ function ButtonStatus(data) {
   };
 
   useEffect(() => {
+    if (orderStatusState) {
+      window.location.reload();
+      return;
+    }
     verifyStatus(status, title);
-  }, [status, title]);
+  }, [orderStatusState, status, title, token]);
 
   return (
     <button
