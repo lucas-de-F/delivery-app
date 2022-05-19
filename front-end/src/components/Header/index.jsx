@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { dataTestId } from '../../utils';
+import { useNavigate } from 'react-router-dom';
+
+import { CustomerHeader, SellerHeader } from './components';
 
 const Header = () => {
   const name = useSelector((state) => state.UserSlice.name);
@@ -12,22 +13,19 @@ const Header = () => {
     window.localStorage.clear();
   };
 
+  const { role } = JSON.parse(localStorage.getItem('user'));
+
+  if (role === 'customer') {
+    return <CustomerHeader customerProps={ { name, handleClick } } />;
+  }
+
+  if (role === 'seller') {
+    return <SellerHeader sellerProps={ { name, handleClick } } />;
+  }
+
   return (
     <div>
-      <Link to="/customer/products" data-testid={ dataTestId.id11 }>
-        PRODUTOS
-      </Link>
-      <Link to="/customer/orders" data-testid={ dataTestId.id12 }>
-        MEUS PEDIDOS
-      </Link>
-      <p data-testid={ dataTestId.id13 }>{ name }</p>
-      <button
-        type="button"
-        onClick={ () => handleClick() }
-        data-testid={ dataTestId.id14 }
-      >
-        SAIR
-      </button>
+      <CustomerHeader customerProps={ { name, handleClick } } />
     </div>
   );
 };
