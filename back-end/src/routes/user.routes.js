@@ -5,6 +5,8 @@ const { authenticator } = require('../middlewares');
 
 const UserRoute = Router();
 
-UserRoute.get('/', authenticator(), userController.getSellers);
+UserRoute.get('/', authenticator('administrator'), userController.readAll);
+
+UserRoute.delete('/:id', authenticator('administrator'), userController.remove);
 
 module.exports = UserRoute;
