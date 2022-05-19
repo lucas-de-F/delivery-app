@@ -7,8 +7,10 @@ import jwtDecode from 'jwt-decode';
 
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
+
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
 import { setStatus, setAuth, setName } from '../../../redux/userSlice';
+
 import { dataTestId } from '../../../utils';
 
 const LoginForm = () => {
@@ -30,6 +32,7 @@ const LoginForm = () => {
       navigate('/seller/orders', { replace: true });
       dispatch(setStatus('pending'));
     }
+
     try {
       const { token } = JSON.parse(localStorage.getItem('user'));
 
@@ -48,6 +51,7 @@ const LoginForm = () => {
       email: '',
       password: '',
     },
+
     validate: (values) => {
       setError(false);
       const { error } = loginSchema.validate(values);
@@ -56,6 +60,7 @@ const LoginForm = () => {
       }
       setAble(false);
     },
+
     onSubmit: (values) => {
       dispatch(getToken(values)).then(unwrapResult).then().catch(setError(true));
     },
