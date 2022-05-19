@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { CustomerHeader, SellerHeader } from './components';
+import { AdminHeader, CustomerHeader, SellerHeader } from './components';
 
 const Header = () => {
   const name = useSelector((state) => state.UserSlice.name);
@@ -15,8 +15,8 @@ const Header = () => {
 
   const { role } = JSON.parse(localStorage.getItem('user'));
 
-  if (role === 'customer') {
-    return <CustomerHeader customerProps={ { name, handleClick } } />;
+  if (role === 'administrator') {
+    return <AdminHeader adminProps={ { name, handleClick } } />;
   }
 
   if (role === 'seller') {

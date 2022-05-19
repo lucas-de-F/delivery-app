@@ -7,15 +7,16 @@ import {
 } from 'react-router-dom';
 
 import {
-  Login,
+  AdminPage,
   Checkout,
   DetailsOrder,
+  Login,
+  NotFound,
   Orders,
   Products,
   Register,
-  NotFound,
-  SellerPage,
   SellerDetails,
+  SellerPage,
 } from './pages';
 
 import PrivateRoute from './routes/auth';
@@ -26,6 +27,11 @@ function App() {
   return (
     <Router>
       <Routes>
+
+        <Route element={ <PrivateRoute Urole="administrator" /> }>
+          <Route exact path="/admin/manage" element={ <AdminPage /> } />
+        </Route>
+
         <Route element={ <PrivateRoute Urole="seller" /> }>
           <Route exact path="/seller/orders" element={ <SellerPage /> } />
           <Route exact path="/seller/orders/:id" element={ <SellerDetails /> } />

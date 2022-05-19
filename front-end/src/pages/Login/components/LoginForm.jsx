@@ -23,6 +23,11 @@ const LoginForm = () => {
   const [err, setError] = useState(false);
 
   useEffect(() => {
+    if (status === 'fulfilled' && auth.role === 'administrator') {
+      navigate('/admin/manage', { replace: true });
+      dispatch(setStatus('pending'));
+    }
+
     if (status === 'fulfilled' && auth.role === 'customer') {
       navigate('/customer/products', { replace: true });
       dispatch(setStatus('pending'));

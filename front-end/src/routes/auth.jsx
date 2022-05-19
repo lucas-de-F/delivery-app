@@ -19,6 +19,9 @@ export default function RequireAuth({ Urole }) {
   } catch (e) { return <Navigate to="/login" replace />; }
 
   if (auth.role === Urole) {
+    if (Urole === 'administrator') {
+      return <Outlet />;
+    }
     if (Urole === 'customer') {
       return <Outlet />;
     }

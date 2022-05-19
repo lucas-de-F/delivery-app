@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { unwrapResult } from '@reduxjs/toolkit';
 
-import { registerUser } from '../../../redux/requestThunks/tokenRequests';
 import { setStatus } from '../../../redux/userSlice';
+import { registerUser } from '../../../redux/requestThunks/tokenRequests';
 
 import registerSchema from './RegisterSchema';
 import { dataTestId } from '../../../utils';
@@ -31,9 +31,9 @@ const RegisterForm = () => {
       email: '',
       password: '',
     },
+
     validate: (values) => {
       setError(false);
-
       const { error } = registerSchema.validate(values);
       if (error) {
         return setAble(true);
