@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { dataTestId } from '../../../utils';
 
 const TotalPrice = () => {
   const totalPrice = useSelector((state) => state.CartSlice.totalPrice);
@@ -7,7 +8,7 @@ const TotalPrice = () => {
   return (
     <div>
       <span
-        data-testid="customer_checkout__element-order-total-price"
+        data-testid={ dataTestId.id28 }
       >
         {totalPrice}
       </span>

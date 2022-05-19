@@ -9,6 +9,7 @@ import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
 import { setStatus, setAuth, setName } from '../../../redux/userSlice';
+import { dataTestId } from '../../../utils';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
@@ -65,14 +66,14 @@ const LoginForm = () => {
       <form onSubmit={ formik.handleSubmit }>
         <input
           type="text"
-          data-testid="common_login__input-email"
+          data-testid={ dataTestId.id01 }
           placeholder="email"
-          id="common_login__input-email"
+          id={ dataTestId.id01 }
           { ...formik.getFieldProps('email') }
         />
         <input
-          data-testid="common_login__input-password"
-          id="common_login__input-password"
+          data-testid={ dataTestId.id02 }
+          id={ dataTestId.id02 }
           placeholder="********"
           type="password"
           { ...formik.getFieldProps('password') }
@@ -80,7 +81,7 @@ const LoginForm = () => {
         <button
           variant="contained"
           color="primary"
-          data-testid="common_login__button-login"
+          data-testid={ dataTestId.id03 }
           type="submit"
           disabled={ able }
         >
@@ -88,7 +89,7 @@ const LoginForm = () => {
         </button>
       </form>
       {
-        err && <div data-testid="common_login__element-invalid-email">ERRO</div>
+        err && <div data-testid={ dataTestId.id05 }>ERRO</div>
       }
       <RegisterButton />
     </>

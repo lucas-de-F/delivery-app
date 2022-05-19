@@ -9,6 +9,7 @@ import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 
 import { CreateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 import { setOrderId } from '../../../redux/orderSlice';
+import { dataTestId } from '../../../utils';
 
 const DetailsAndDeliveryAddressForm = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const DetailsAndDeliveryAddressForm = () => {
       <label htmlFor="seller">
         Para Vendedora Responsável:
         <select
-          data-testid="customer_checkout__select-seller"
+          data-testid={ dataTestId.id29 }
           name="sellerId"
           id="sellerId"
           value={ sellerId }
@@ -92,7 +93,7 @@ const DetailsAndDeliveryAddressForm = () => {
           type="text"
           id="adress"
           placeholder="Rua 29 de Abril"
-          data-testid="customer_checkout__input-address"
+          data-testid={ dataTestId.id30 }
           { ...formik.getFieldProps('deliveryAddress') }
         />
       </label>
@@ -102,12 +103,12 @@ const DetailsAndDeliveryAddressForm = () => {
           type="text"
           id="number-adress"
           placeholder="302"
-          data-testid="customer_checkout__input-addressNumber"
+          data-testid={ dataTestId.id31 }
           { ...formik.getFieldProps('deliveryNumber') }
         />
       </label>
       <button
-        data-testid="customer_checkout__button-submit-order"
+        data-testid={ dataTestId.id32 }
         type="submit"
       >
         FINALIZAR PEDIDO

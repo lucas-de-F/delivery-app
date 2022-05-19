@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCart, removeCart, setPrice } from '../../redux/cartSlice';
+import { dataTestId } from '../../utils';
 
 const Product = ({ data, index }) => {
   const dispatch = useDispatch();
@@ -10,39 +11,39 @@ const Product = ({ data, index }) => {
 
   return (
     <div>
-      <p data-testid={ `customer_products__element-card-title-${index}` }>{data.name}</p>
-      <p data-testid={ `customer_products__element-card-price-${index}` }>
+      <p data-testid={ `${dataTestId.id15}${index}` }>{data.name}</p>
+      <p data-testid={ `${dataTestId.id16}${index}` }>
         {
           Number(data.price).toFixed(2).toString().replace('.', ',')
         }
       </p>
       <img
-        data-testid={ `customer_products__img-card-bg-image-${index}` }
+        data-testid={ `${dataTestId.id17}${index}` }
         alt="product"
         src={ data.urlImage }
       />
       <button
         type="button"
         onClick={ () => dispatch(setCart(data)) }
-        data-testid={ `customer_products__button-card-add-item-${index}` }
+        data-testid={ `${dataTestId.id18}${index}` }
       >
         +
       </button>
       <button
         type="button"
         onClick={ () => dispatch(removeCart(data)) }
-        data-testid={ `customer_products__button-card-rm-item-${index}` }
+        data-testid={ `${dataTestId.id19}${index}` }
       >
         -
       </button>
-      <label htmlFor={ `customer_products__input-card-quantity-${index}` }>
+      <label htmlFor={ `${dataTestId.id20}${index}` }>
         <input
           onChange={ (event) => dispatch(setPrice({
             quantity: event.target.value, data,
           })) }
-          data-testid={ `customer_products__input-card-quantity-${index}` }
+          data-testid={ `${dataTestId.id20}${index}` }
           type="number"
-          id={ `customer_products__input-card-quantity-${index}` }
+          id={ `${dataTestId.id20}${index}` }
           value={ !cart[data.name]?.quantity ? 0 : cart[data.name]?.quantity }
         />
       </label>

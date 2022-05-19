@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { dataTestId } from '../../../utils';
 
 const HeaderSeller = () => {
   const name = useSelector((state) => state.UserSlice.name);
@@ -16,7 +17,7 @@ const HeaderSeller = () => {
     <nav>
       <ul>
         <li
-          data-testid="customer_products__element-navbar-link-orders"
+          data-testid={ dataTestId.id12 }
         >
           <h3 to="/customer/products">
             PEDIDOS
@@ -24,14 +25,14 @@ const HeaderSeller = () => {
         </li>
 
         <li
-          data-testid="customer_products__element-navbar-user-full-name"
+          data-testid={ dataTestId.id13 }
         >
           { name }
         </li>
 
         <button type="button" onClick={ handleClick }>
           <li
-            data-testid="customer_products__element-navbar-link-logout"
+            data-testid={ dataTestId.id14 }
           >
             SAIR
           </li>

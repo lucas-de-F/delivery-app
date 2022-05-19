@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { dataTestId } from '../../../utils';
 
 const CartButton = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const CartButton = () => {
       type="button"
     >
       <span
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid={ dataTestId.id21 }
       >
         {totalPrice}
       </span>

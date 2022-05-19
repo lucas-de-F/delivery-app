@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { dataTestId } from '../../../utils';
 
 const RegisterButton = () => {
   const navigate = useNavigate();
   return (
     <button
       type="button"
-      data-testid="common_login__button-register"
-      id="common_login__button-register"
+      data-testid={ dataTestId.id04 }
+      id={ dataTestId.id04 }
       color="primary"
       onClick={ () => navigate('/register') }
     >

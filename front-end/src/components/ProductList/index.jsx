@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCartByInput, removeCart } from '../../redux/cartSlice';
+import { dataTestId } from '../../utils';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -22,36 +23,36 @@ const ProductList = () => {
           >
             <div
               data-testid={
-                `customer_checkout__element-order-table-item-number-${key}`
+                `${dataTestId.id22}${key}`
               }
             >
               {key + 1}
             </div>
-            <div data-testid={ `customer_checkout__element-order-table-name-${key}` }>
+            <div data-testid={ `${dataTestId.id23}${key}` }>
               {payload}
             </div>
             <div
               data-testid={
-                `customer_checkout__element-order-table-quantity-${key}`
+                `${dataTestId.id24}${key}`
               }
             >
               {cart[payload].quantity}
             </div>
             <div
-              data-testid={ `customer_checkout__element-order-table-unit-price-${key}` }
+              data-testid={ `${dataTestId.id25}${key}` }
             >
               {Number(cart[payload].price)
                 .toFixed(toFixedNumber).toString().replace('.', ',')}
             </div>
             <div
-              data-testid={ `customer_checkout__element-order-table-sub-total-${key}` }
+              data-testid={ `${dataTestId.id26}${key}` }
             >
               {(cart[payload].quantity * cart[payload].price)
                 .toFixed(toFixedNumber).toString().replace('.', ',')}
             </div>
             <button
               type="button"
-              data-testid={ `customer_checkout__element-order-table-remove-${key}` }
+              data-testid={ `${dataTestId.id27}${key}` }
               onClick={ () => dispatch(removeCart({ name: payload, removeAll: true })) }
             >
               Remove
