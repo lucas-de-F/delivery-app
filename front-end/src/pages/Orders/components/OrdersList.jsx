@@ -1,12 +1,8 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dataTestId } from '../../../utils';
-
-const utc = require('dayjs/plugin/utc');
-const dayjs = require('dayjs');
-
-dayjs.extend(utc);
 
 const OrdersList = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
