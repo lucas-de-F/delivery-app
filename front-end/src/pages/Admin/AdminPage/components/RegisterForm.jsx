@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-
-// import { registerUser } from '../../../../redux/requestThunks/tokenRequests';
 
 import registerSchema from './RegisterSchema';
 import { dataTestId } from '../../../../utils';
+import RegisterUtils from '../../../../utils/requests/registerRequest';
 
 const RegisterForm = () => {
   const [able, setAble] = useState(true);
-  // const dispatch = useDispatch();
-
   const [err, setError] = useState(false);
 
   const formik = useFormik({
@@ -28,11 +24,14 @@ const RegisterForm = () => {
       if (error) {
         return setAble(true);
       }
+
       setAble(false);
     },
 
     onSubmit: (values) => {
-      console.log('Deu Certo', values);
+      RegisterUtils.registerUser(values);
+      formik.resetForm();
+      setAble(true);
     },
   });
 
@@ -64,7 +63,7 @@ const RegisterForm = () => {
         <select
           data-testid={ dataTestId.id67 }
           id={ dataTestId.id67 }
-          defaultValue="customer"
+          value="seller"
           { ...formik.getFieldProps('role') }
         >
           <option value="seller">Vendedor</option>

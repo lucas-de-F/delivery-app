@@ -29,7 +29,7 @@ const login = async (e, password) => {
   return token;
 };
 
-const createUser = async ({ name, email, password, role = 'customer' }) => {
+const createUser = async ({ name, email, password, role }) => {
   const newUser = {
     name,
     email,
