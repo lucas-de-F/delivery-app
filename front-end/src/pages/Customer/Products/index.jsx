@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { productsRequest } from '../../redux/requestThunks/productsRequest';
-import { setCartByInput } from '../../redux/cartSlice';
+import { productsRequest } from '../../../redux/requestThunks/productsRequest';
+import { setCartByInput } from '../../../redux/cartSlice';
+import { setStatus } from '../../../redux/userSlice';
 
-import Header from '../../components/Header';
-import Product from '../../components/Product';
+import { Header, Product } from '../../../components';
 import CartButton from './components/CartButton';
-import { setStatus } from '../../redux/userSlice';
 
 const Products = () => {
   const dispatch = useDispatch();
