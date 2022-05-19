@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header';
+
+import { Header } from '../../../components';
 import OrdersList from './components/OrdersList';
-import { OrderRequestThunk } from '../../redux/requestThunks/orderRequest';
+
+import { OrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
 const DetailsOrder = () => {
   const dispatch = useDispatch();
