@@ -6,17 +6,18 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import Login from './pages/Login';
-import Products from './pages/Products';
-import Register from './pages/Register';
-import Checkout from './pages/Checkout';
-import DetailsOrder from './pages/DetailsOrder';
-import Orders from './pages/Orders';
-import SellerPage from './pages/Seller';
-import SellerDetails from './pages/SellerDetails';
-import NotFound from './pages/NotFound';
+import {
+  Login,
+  Checkout,
+  DetailsOrder,
+  Orders,
+  Products,
+  Register,
+  NotFound,
+  SellerPage,
+  SellerDetails,
+} from './pages';
 
-// import DetailsOrder from './pages/DetailsOrder';
 import PrivateRoute from './routes/auth';
 
 import './css.css';
