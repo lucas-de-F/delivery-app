@@ -12,7 +12,6 @@ import { setAuth, setName } from '../redux/userSlice';
 export default function RequireAuth({ Urole }) {
   const { auth } = useAuth();
   const dispatch = useDispatch();
-  // const location = useLocation();
 
   try {
     const { token } = JSON.parse(localStorage.getItem('user'));
