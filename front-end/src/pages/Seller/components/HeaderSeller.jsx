@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { dataTestId } from '../../../utils';
 
 const HeaderSeller = () => {
@@ -19,21 +19,17 @@ const HeaderSeller = () => {
         <li
           data-testid={ dataTestId.id12 }
         >
-          <h3 to="/customer/products">
+          <Link to="/customer/products">
             PEDIDOS
-          </h3>
+          </Link>
         </li>
 
-        <li
-          data-testid={ dataTestId.id13 }
-        >
+        <li data-testid={ dataTestId.id13 }>
           { name }
         </li>
 
         <button type="button" onClick={ handleClick }>
-          <li
-            data-testid={ dataTestId.id14 }
-          >
+          <li data-testid={ dataTestId.id14 }>
             SAIR
           </li>
         </button>
