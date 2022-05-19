@@ -5,8 +5,9 @@ import { useFormik } from 'formik';
 import { unwrapResult } from '@reduxjs/toolkit';
 
 import { registerUser } from '../../../redux/requestThunks/tokenRequests';
-import registerSchema from './RegisterSchema';
 import { setStatus } from '../../../redux/userSlice';
+
+import registerSchema from './RegisterSchema';
 import { dataTestId } from '../../../utils';
 
 const RegisterForm = () => {
