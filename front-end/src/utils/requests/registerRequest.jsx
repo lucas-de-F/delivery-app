@@ -1,5 +1,7 @@
 import AxiosHTTP from './axios';
 
+const md5 = require('md5');
+
 const LOCAL = 'http://localhost:3001';
 
 class TokenUtils {
@@ -10,7 +12,7 @@ class TokenUtils {
       body: {
         name,
         email,
-        password,
+        password: md5(password),
       },
     });
 
