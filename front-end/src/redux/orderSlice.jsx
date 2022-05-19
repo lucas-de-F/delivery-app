@@ -3,7 +3,7 @@ import { extraReducers } from './requestThunks/orderRequest';
 
 const initialState = {
   orders: [],
-  ordersById: {},
+  ordersById: null,
   orderId: null,
   status: '',
 };

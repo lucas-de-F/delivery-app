@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs/';
 
 import { useSelector } from 'react-redux';
 import { dataTestId, generateId } from '../../../utils';
 import ButtonStatus from './ButtonStatus';
-
-dayjs.extend(utc);
 
 const SectionDetails = () => {
   const pageId = Number(window.location.pathname.split('/')[3]);
@@ -32,7 +29,7 @@ const SectionDetails = () => {
                 { `PEDIDO ${generateId(orderDetail.id)}` }
               </p>
               <p data-testid={ dataTestId.id55 }>
-                {`${dayjs.utc(orderDetail.saleDate).format('DD/MM/YYYY')}`}
+                {dayjs(orderDetail.saleDate).locale('pt-br').format('DD/MM/YYYY')}
               </p>
               <p data-testid={ dataTestId.id54 }>
                 { orderDetail.status }
