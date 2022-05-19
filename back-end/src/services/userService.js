@@ -1,4 +1,4 @@
-const md5 = require('md5');
+const { Op } = require('sequelize');
 
 const { User } = require('../database/models');
 const { AppError, jwt } = require('../utils');
@@ -18,7 +18,7 @@ const login = async (e, password) => {
     throw AppError('notFound', 'User not exists');
   }
 
-  if (result.password !== md5(password)) {
+  if (result.password !== password) {
     throw AppError('unauthorized', 'Incorrect email or password');
   }
 
@@ -29,11 +29,12 @@ const login = async (e, password) => {
   return token;
 };
 
-const createUser = async ({ name, email, password }) => {
+const createUser = async ({ name, email, password, role = 'customer' }) => {
   const newUser = {
     name,
     email,
-    password: md5(password),
+    password,
+    role,
   };
 
   const response = await verifyUserEmail(email);
@@ -42,9 +43,9 @@ const createUser = async ({ name, email, password }) => {
     throw AppError('conflict', 'This email address is already in use');
   }
 
-  const result = await User.create({ ...newUser, role: 'customer' });
+  const result = await User.create({ ...newUser });
 
-  const { role, id } = result;
+  const { id } = result;
 
   const token = jwt.sign({ role, name, email, id });
 
@@ -55,8 +56,33 @@ const getSellers = async () => User.findAll(
   { where: { role: 'seller' }, attributes: ['id', 'name'] },
   );
 
+  // readll pega todos os usuários da role customer ou seller menos o admin e retorna id name e role
+const readAll = async () => User.findAll(
+  {
+    where: {
+      [Op.or]: [
+        { role: 'customer' },
+        { role: 'seller' },
+      ],
+    },
+    attributes: ['id', 'name', 'role'],
+  },
+);
+
+const remove = async (id) => {
+  const user = await User.findByPk(id);
+
+  if (!user) {
+    throw AppError('notFound', 'User not exists');
+  }
+
+  await user.destroy();
+};
+
 module.exports = {
   login,
   createUser,
   getSellers,
+  readAll,
+  remove,
 };
