@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { dataTestId } from '../../../utils';
 
 const TotalPrice = () => {
   const [totalPrice, setTotalPrice] = useState(null);
@@ -7,18 +8,17 @@ const TotalPrice = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
 
   useEffect(() => {
-    if (orders.length > 0 && orders.length <= (pageId)) {
+    if (orders && orders.length !== 0) {
       const findOrder = orders.find((order) => order.id === pageId);
-      setTotalPrice(findOrder.totalPrice);
+      return setTotalPrice(findOrder.totalPrice);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders, pageId]);
 
   return (
     <div>
       { totalPrice && (
         <span
-          data-testid="customer_order_details__element-order-total-price"
+          data-testid={ dataTestId.id45 }
         >
           { totalPrice.toString().replace('.', ',') }
         </span>

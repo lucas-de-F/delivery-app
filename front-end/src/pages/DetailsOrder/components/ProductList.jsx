@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
-const ORDITMNUMB = 'customer_order_details__element-order-table-item-number-';
-const ORDITMNAME = 'customer_order_details__element-order-table-name-';
-const ORDITMQTY = 'customer_order_details__element-order-table-quantity-';
-const ORDITMPRICE = 'customer_order_details__element-order-table-unit-price-';
-const ORDITMSUBT = 'customer_order_details__element-order-table-sub-total-';
+import { dataTestId } from '../../../utils';
 
 const ProductList = () => {
   const [products, setProducts] = useState(null);
@@ -13,12 +8,11 @@ const ProductList = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
 
   useEffect(() => {
-    if (orders.length > 0 && orders.length <= (pageId)) {
+    if (orders && orders.length !== 0) {
       const findOrder = orders.find((order) => order.id === pageId);
-      setProducts(findOrder.products);
-      console.log(products);
+      return setProducts(findOrder.products);
     }
-  }, [orders, pageId, products]);
+  }, [orders, pageId]);
 
   return (
     <div>
@@ -26,27 +20,27 @@ const ProductList = () => {
         products.map((product, key) => (
           <ol key={ key }>
             <ul
-              data-testid={ `${ORDITMNUMB}${key}` }
+              data-testid={ `${dataTestId.id41}${key}` }
             >
               { product.id }
             </ul>
             <ul
-              data-testid={ `${ORDITMNAME}${key}` }
+              data-testid={ `${dataTestId.id42}${key}` }
             >
               { product.name }
             </ul>
             <ul
-              data-testid={ `${ORDITMQTY}${key}` }
+              data-testid={ `${dataTestId.id43}${key}` }
             >
               { product.SalesProducts.quantity }
             </ul>
             <ul
-              data-testid={ `${ORDITMPRICE}${key}` }
+              data-testid={ `${dataTestId.id46}${key}` }
             >
               { product.price }
             </ul>
             <ul
-              data-testid={ `${ORDITMSUBT}${key}` }
+              data-testid={ `${dataTestId.id44}${key}` }
             >
               { (product.SalesProducts.quantity * product.price).toFixed(2) }
             </ul>
