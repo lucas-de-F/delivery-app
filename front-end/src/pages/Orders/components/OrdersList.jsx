@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { dataTestId } from '../../../utils';
 
 const utc = require('dayjs/plugin/utc');
 const dayjs = require('dayjs');
@@ -8,31 +10,26 @@ dayjs.extend(utc);
 
 const OrdersList = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
-  // const generateID = (id) => {
-  //   if (id.toString().length === 1) return `00${id}`;
-  //   if (id.toString().length === 2) return `0${id}`;
 
-  //   return id;
-  // };
   return (
     <>
       {orders.map((order, key) => (
-        <ol key={ `'ol${key + 1}'` }>
-          <li data-testid={ `customer_orders__element-order-id-${order.id}` }>
-            pedido
-            {' '}
-            {key + 1}
-          </li>
-          <li data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
-            {order.status}
-          </li>
-          <li data-testid={ `customer_orders__element-order-date-${order.id}` }>
-            {dayjs.utc(order.saleDate).format('DD/MM/YYYY')}
-          </li>
-          <li data-testid={ `customer_orders__element-card-price-${order.id}` }>
-            {order.totalPrice}
-          </li>
-        </ol>
+        <Link to={ `/customer/orders/${order.id}` } key={ `'ol${key + 1}'` }>
+          <ol>
+            <li data-testid={ `${dataTestId.id33}${order.id}` }>
+              {`pedido ${key + 1}`}
+            </li>
+            <li data-testid={ `${dataTestId.id34}${order.id}` }>
+              {order.status}
+            </li>
+            <li data-testid={ `${dataTestId.id35}${order.id}` }>
+              {dayjs(order.saleDate).locale('pt-br').format('DD/MM/YYYY')}
+            </li>
+            <li data-testid={ `${dataTestId.id36}${order.id}` }>
+              {order.totalPrice.toString().replace('.', ',')}
+            </li>
+          </ol>
+        </Link>
       ))}
     </>
   );
