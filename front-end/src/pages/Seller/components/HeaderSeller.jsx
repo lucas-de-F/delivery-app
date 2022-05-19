@@ -16,10 +16,8 @@ const HeaderSeller = () => {
   return (
     <nav>
       <ul>
-        <li
-          data-testid={ dataTestId.id12 }
-        >
-          <Link to="/customer/products">
+        <li>
+          <Link to="/seller/orders" data-testid={ dataTestId.id12 }>
             PEDIDOS
           </Link>
         </li>
