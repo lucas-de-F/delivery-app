@@ -1,4 +1,5 @@
 const { Sales, Product, SalesProducts } = require('../database/models');
+const { AppError } = require('../utils');
 
 const findId = async (id) => Sales.findByPk(id, { 
   attributes: { exclude: ['user_id', 'seller_id'] },
@@ -16,7 +17,7 @@ const create = async (data) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber, 
-    saleDate, 
+    saleDate,
     status: 'Pendente',
   });
 
@@ -27,13 +28,39 @@ const create = async (data) => {
   return result;
 };
 
-const readOne = async (id) => Sales.findAll({ 
-  attributes: { exclude: ['user_id', 'seller_id'] },
-  include: [{ model: Product, as: 'products' }],
-  where: { userId: id }, 
-});
+const readOne = async (id, role) => {
+  const result = await Sales.findAll(
+    { 
+      attributes: { exclude: ['user_id', 'seller_id'] },
+      include: [{ 
+        model: Product, as: 'products',
+      }],
+      where: { [role]: id },
+    },
+  );
+
+  return result;
+};
+
+const partialUpdateDelivery = async (id, data) => {
+  const findOneId = await findId(id);
+
+  if (!findOneId) {
+    throw AppError('notFound', 'Sale not Found');
+  }
+
+  const { status } = data;
+
+  const result = await Sales.update(
+    { status },
+    { where: { id } },
+  );
+
+  return result;
+};
 
 module.exports = {
   create,
   readOne,
+  partialUpdateDelivery,
 };

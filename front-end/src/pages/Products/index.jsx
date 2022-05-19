@@ -7,6 +7,7 @@ import { setCartByInput } from '../../redux/cartSlice';
 import Header from '../../components/Header';
 import Product from '../../components/Product';
 import CartButton from './components/CartButton';
+import { setStatus } from '../../redux/userSlice';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,14 @@ const Products = () => {
   const { cart } = useSelector((state) => state.CartSlice);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(productsRequest(token));
+    try {
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      if (token) {
+        dispatch(productsRequest(token));
+        setStatus('');
+      }
+    } catch (err) {
+      return err;
     }
   }, [dispatch]);
 
@@ -30,7 +36,7 @@ const Products = () => {
       <CartButton />
       <div>
         { !products ? 'loading' : products
-          .map((item, i) => <Product data={ item } key={ i } index={ i } />)}
+          .map((item, i) => <Product data={ item } key={ i } index={ i + 1 } />)}
       </div>
     </div>
   );

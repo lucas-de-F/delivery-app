@@ -26,6 +26,8 @@
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.4",
     "@testing-library/user-event": "13.5.0",
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.2",
     "formik": "^2.2.9",
     "install": "^0.13.0",
     "joi": "^17.6.0",
@@ -37,8 +39,13 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "rooks": "^5.11.0",
     "serve": "13.0.2",
-    "web-vitals": "2.1.4"
+    "web-vitals": "2.1.4",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "devDependencies": {
     "eslint-config-trybe-frontend": "1.2.3",

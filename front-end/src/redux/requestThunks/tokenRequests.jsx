@@ -19,23 +19,46 @@ export const extraReducers = (builder) => {
     if (action.payload.statusCode === statusCode) {
       state.status = 'fulfilled';
     }
-    const { name, email, role } = jwtDecode(action.payload.body.token);
-    state.name = name;
-    state.auth = {
-      email,
-      role,
-    };
+    const { token } = action.payload.body;
 
-    localStorage.setItem('name', JSON.stringify(name));
-    localStorage.setItem('email', JSON.stringify(email));
-    localStorage.setItem('role', JSON.stringify(role));
-    localStorage.setItem('token', JSON.stringify(action.payload.body.token));
-  });
+    try {
+      const { name, email, role, id } = jwtDecode(token);
+      state.name = name;
+      state.auth = {
+        token,
+        userId: id,
+        email,
+        role,
+      };
 
+      localStorage.setItem('user', JSON.stringify({ name, role, email, token }));
+    } catch (error) {
+      return console.log(error, 'ERRO');
+    }
+  })
+    .addCase(getToken.rejected, (state) => {
+      state.status = 'rejected';
+    });
   builder.addCase(registerUser.fulfilled, (state, action) => {
     const statusCode = 201;
     if (action.payload.statusCode === statusCode) {
       state.status = 'fulfilled';
+    }
+    try {
+      const token = action.payload.body?.token;
+
+      const { name, email, role, id } = jwtDecode(token);
+      state.name = name;
+      state.auth = {
+        token,
+        userId: id,
+        email,
+        role,
+      };
+
+      localStorage.setItem('user', JSON.stringify({ name, role, email, token }));
+    } catch (error) {
+      return console.log(error, 'ERRO');
     }
   });
 };

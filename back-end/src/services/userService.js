@@ -22,9 +22,9 @@ const login = async (e, password) => {
     throw AppError('unauthorized', 'Incorrect email or password');
   }
 
-  const { role, name, email } = result;
+  const { role, name, email, id } = result;
 
-  const token = jwt.sign({ role, name, email });
+  const token = jwt.sign({ role, name, email, id });
 
   return token;
 };
@@ -44,14 +44,19 @@ const createUser = async ({ name, email, password }) => {
 
   const result = await User.create({ ...newUser, role: 'customer' });
 
-  const { role } = result;
+  const { role, id } = result;
 
-  const token = jwt.sign({ role });
+  const token = jwt.sign({ role, name, email, id });
 
   return token;
 };
 
+const getSellers = async () => User.findAll(
+  { where: { role: 'seller' }, attributes: ['id', 'name'] },
+  );
+
 module.exports = {
   login,
   createUser,
+  getSellers,
 };
