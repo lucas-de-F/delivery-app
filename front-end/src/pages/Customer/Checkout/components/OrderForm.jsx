@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
-
 import { useFormik } from 'formik';
-import { setStatus } from '../../../redux/userSlice';
-import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 
-import { CreateOrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
-import { setOrderId } from '../../../redux/orderSlice';
-import { dataTestId } from '../../../utils';
+import { setOrderId } from '../../../../redux/orderSlice';
+import { setStatus } from '../../../../redux/userSlice';
+import { CreateOrderRequestThunk } from '../../../../redux/requestThunks/orderRequest';
+import { getSellers } from '../../../../redux/requestThunks/sellersRequest';
+
+import { dataTestId } from '../../../../utils';
 
 const DetailsAndDeliveryAddressForm = () => {
   const dispatch = useDispatch();
@@ -43,10 +43,12 @@ const DetailsAndDeliveryAddressForm = () => {
       arrayCart.forEach((item) => {
         newCartArray.push({ ...cart[item] });
       });
+
       const mappedCartArray = newCartArray.map((item) => {
         delete item.price;
         return item;
       });
+
       if (token) {
         const params = {
           userId: auth.userId,
@@ -57,6 +59,7 @@ const DetailsAndDeliveryAddressForm = () => {
           products: mappedCartArray,
           token,
         };
+
         dispatch(CreateOrderRequestThunk(params))
           .then(unwrapResult).then().catch((e) => console.log(e));
         setStatus('');
@@ -75,7 +78,6 @@ const DetailsAndDeliveryAddressForm = () => {
           value={ sellerId }
           onChange={ (event) => setSellerId(event.target.value) }
         >
-          {/* <option disabled>Selecione um vendedor</option> */}
           { !sellers ? <option>No option</option> : sellers
             .map((item, i) => (
               <option
