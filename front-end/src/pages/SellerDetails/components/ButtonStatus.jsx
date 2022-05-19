@@ -13,10 +13,13 @@ function ButtonStatus(data) {
   const orderStatusState = useSelector((state) => state.OrderSlice.status);
 
   const verifyStatus = (s, t) => {
+    if (s && s === 'Pendente' && t === 'SAIU PARA ENTREGA') {
+      setOrderStatus(true);
+    }
+
     if (s && s !== 'Pendente') {
       if (s === 'Preparando' && t.includes('PREPARAR PEDIDO')) {
         setOrderStatus(true);
-        return;
       }
 
       if (s === 'Em Trânsito' || s === 'Entregue') {
@@ -45,7 +48,7 @@ function ButtonStatus(data) {
   return (
     <button
       type="button"
-      data-testi={ `${dataId}` }
+      data-testid={ `${dataId}` }
       onClick={ () => {
         handleClick(title);
       } }
