@@ -1,0 +1,29 @@
+@import "../../../utils/styles/products.scss";
+
+.products-container {
+  @include displayFlex(center, column, center);
+  @include define-styles(100%, 100vh, null, null, #242626);
+
+  .cart-button-container {
+    @include define-styles(null, null, null, null, #DA6D00);
+    @include define-font(faro, null, 2em);
+    @include define-box-shadow(4px, 4px, 6px);
+    border: 0;
+    border-radius: 4px;
+    bottom: 4%;
+    color: #242626;
+    padding: 10px 20px;
+    position: fixed;
+    right: 4%;
+  }
+
+  .products-list-container {
+    @include displayFlex(center, row wrap, null);
+    @include define-styles(80%, 100vh, null, null, #343638);
+    @include define-box-shadow(4px, 4px, 6px);
+    border-radius: 4px;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 3em 1em;
+  }
+}

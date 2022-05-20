@@ -8,6 +8,8 @@ import { setStatus } from '../../../redux/userSlice';
 import { Header, Product } from '../../../components';
 import CartButton from './components/CartButton';
 
+import './styles.scss';
+
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.ProductsSlice.products);
@@ -30,10 +32,10 @@ const Products = () => {
   }, [cart, dispatch]);
 
   return (
-    <div>
+    <div className="products-container">
       <Header />
       <CartButton />
-      <div>
+      <div className="products-list-container">
         { !products ? 'loading' : products
           .map((item, i) => <Product data={ item } key={ i } index={ i + 1 } />)}
       </div>

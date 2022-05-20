@@ -1,5 +1,5 @@
 {
-  "name": "delivery-app-back-end",
+  "name": "delivery-app-front-end",
   "version": "0.1.0",
   "description": "Front-end do projeto App de Delivery",
   "engines": {
@@ -41,6 +41,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "rooks": "^5.11.0",
+    "sass": "^1.51.0",
     "serve": "13.0.2",
     "web-vitals": "2.1.4",
     "webpack": "^5.72.1",

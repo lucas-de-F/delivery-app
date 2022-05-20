@@ -21,7 +21,7 @@ import {
 
 import PrivateRoute from './routes/auth';
 
-import './css.css';
+import './app.scss';
 
 function App() {
   return (

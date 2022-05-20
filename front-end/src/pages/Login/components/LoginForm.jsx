@@ -7,11 +7,14 @@ import jwtDecode from 'jwt-decode';
 
 import RegisterButton from './RegisterButton';
 import loginSchema from './LoginSchema';
+import LoginError from './LoginError';
 
 import { getToken } from '../../../redux/requestThunks/tokenRequests';
 import { setStatus, setAuth, setName } from '../../../redux/userSlice';
 
 import { dataTestId } from '../../../utils';
+
+import Logo from '../../../images/logo.png';
 
 const LoginForm = () => {
   const [able, setAble] = useState(true);
@@ -72,37 +75,43 @@ const LoginForm = () => {
   });
 
   return (
-    <>
+    <div className="form-content-login">
       <form onSubmit={ formik.handleSubmit }>
-        <input
-          type="text"
-          data-testid={ dataTestId.id01 }
-          placeholder="email"
-          id={ dataTestId.id01 }
-          { ...formik.getFieldProps('email') }
-        />
-        <input
-          data-testid={ dataTestId.id02 }
-          id={ dataTestId.id02 }
-          placeholder="********"
-          type="password"
-          { ...formik.getFieldProps('password') }
-        />
-        <button
-          variant="contained"
-          color="primary"
-          data-testid={ dataTestId.id03 }
-          type="submit"
-          disabled={ able }
-        >
-          Login
-        </button>
+        <img src={ Logo } alt="logo" />
+        <div>
+          <h3>Olho de cobrA</h3>
+          <div>
+            <input
+              type="text"
+              data-testid={ dataTestId.id01 }
+              placeholder="Email"
+              id={ dataTestId.id01 }
+              { ...formik.getFieldProps('email') }
+            />
+            <input
+              data-testid={ dataTestId.id02 }
+              id={ dataTestId.id02 }
+              placeholder="Senha"
+              type="password"
+              { ...formik.getFieldProps('password') }
+            />
+          </div>
+          <button
+            variant="contained"
+            color="primary"
+            data-testid={ dataTestId.id03 }
+            type="submit"
+            disabled={ able }
+          >
+            LOGIN
+          </button>
+        </div>
       </form>
       {
-        err && <div data-testid={ dataTestId.id05 }>ERRO</div>
+        err && <LoginError />
       }
       <RegisterButton />
-    </>
+    </div>
   );
 };
 

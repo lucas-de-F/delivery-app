@@ -1,21 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { dataTestId } from '../../../utils';
 
-const RegisterButton = () => {
-  const navigate = useNavigate();
-  return (
-    <button
-      type="button"
-      data-testid={ dataTestId.id04 }
-      id={ dataTestId.id04 }
-      color="primary"
-      onClick={ () => navigate('/register') }
-    >
-      AINDA NÃO TENHO CONTA
-    </button>
-  );
-};
+const RegisterButton = () => (
+  <span className="span-register">
+    Ainda não tem um cadastro?
+    {' '}
+    {
+      <Link
+        to="/register"
+        ata-testid={ dataTestId.id04 }
+        id={ dataTestId.id04 }
+      >
+        register
+      </Link>
+    }
+  </span>
+);
 
 export default RegisterButton;

@@ -1,0 +1,127 @@
+@import "../../../utils/styles/customer-header.scss";
+
+.header-container {
+  @include displayFlex(space-between, null, center);
+  @include define-styles(100%, 4.5em, 4.5em, null, #343638);
+  @include define-box-shadow(4px, 4px, 6px);
+  
+  .header-orders-and-products-container {
+    @include displayFlex(space-between, null, center);
+    @include define-styles(20%, 85%, 85%, null, null);
+
+    .header-orders-and-products-button {
+      @include displayFlex(space-evenly, column, center);
+      @include define-styles(50%, 100%, 100%, null, null);
+      text-decoration: none;
+      text-align: center;
+      border-radius: 4px;
+      transition: 0.2s;
+
+      img {
+        @include define-styles(30px, null, 30px, null, null);
+      }
+
+      p {
+        @include define-font(Ubuntu, sans-serif, 14px);
+        color: white;
+      }
+    }
+
+    .selected {
+      background-color: #545659 !important;
+    }
+
+    .header-orders-and-products-button:hover {
+      background-color: #545659;
+      transition: 0.2s;
+    }
+  }
+
+  .header-user-and-logout-container {
+    @include displayFlex(space-between, null, center);
+    @include define-styles(20%, 85%, 85%, null, null);
+
+    .header-user-content {
+      @include displayFlex(space-evenly, column, center);
+      @include define-styles(50%, 100%, 100%, null, null);
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
+      border-radius: 4px;
+      transition: 0.2s;
+
+      img {
+        @include define-styles(30px, null, 30px, null, null);
+      }
+
+      p {
+        @include define-font(Ubuntu, sans-serif, 14px);
+        color: white;
+      }
+    }
+
+    .header-user-content:hover {
+      background-color: #545659;
+      transition: 0.2s;
+    }
+
+    .header-logout-content {
+      @include displayFlex(space-evenly, column, center);
+      @include define-styles(50%, 100%, 100%, null, #343638);
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.2s;
+
+      img {
+        @include define-styles(30px, null, 30px, null, null);
+      }
+
+      p {
+        @include define-font(Ubuntu, sans-serif, 14px);
+        color: white;
+      }
+    }
+
+    .header-logout-content:hover {
+      background-color: #545659;
+      transition: 0.2s;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .header-container {
+    .header-orders-and-products-container {
+      @include define-styles(30%, 85%, 85%, null, null);
+    }
+
+    .header-user-and-logout-container {
+
+      @include define-styles(30%, 85%, 85%, null, null);
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .header-container {
+    .header-orders-and-products-container {
+      @include define-styles(35%, 85%, 85%, null, null);
+
+      .header-orders-and-products-button {
+        .header-text-button {
+          display: none;
+        }
+      }
+    }
+
+    .header-user-and-logout-container {
+      @include define-styles(35%, 85%, 85%, null, null);
+
+      .header-text-button {
+        display: none;
+      }
+    }
+  }
+}

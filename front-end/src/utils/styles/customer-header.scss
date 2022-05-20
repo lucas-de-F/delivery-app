@@ -1,0 +1,43 @@
+@mixin displayFlex($jc: null, $fd: null, $al: null) {
+  display: flex;
+  justify-content: $jc;
+  flex-direction: $fd;
+  align-items: $al;
+}
+
+@mixin font-config($name, $url) {
+  font-family: "#{$name}";
+  src: url("../../fonts/#{$url}") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin define-font($ff1, $ff2, $fz) {
+  font-family: $ff1, $ff2;
+  font-size: $fz;
+}
+
+@mixin define-styles($wt: null, $mw: null, $hg: null, $cr: null, $bc: null) {
+  width: $wt;
+  min-height: $mw;
+  height: $hg;
+  color: $cr;
+  background-color: $bc;
+}
+
+@mixin define-box-shadow($px1, $px2, $px3) {
+  box-shadow: $px1 $px2 $px3 0px rgb(0 0 0 / 30%);
+}
+
+@mixin define-border($b, $br) {
+  border: $b;
+  border-radius: $br;
+}
+
+@font-face {
+  @include font-config("faro", "Carnevalee\ Freakshow.ttf");
+}
+
+@font-face {
+  @include font-config("LG", "PoetsenOne-Regular.ttf");
+}

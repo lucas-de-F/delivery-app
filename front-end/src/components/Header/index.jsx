@@ -24,9 +24,7 @@ const Header = () => {
   }
 
   return (
-    <div>
-      <CustomerHeader customerProps={ { name, handleClick } } />
-    </div>
+    <CustomerHeader customerProps={ { name, handleClick } } />
   );
 };
 
