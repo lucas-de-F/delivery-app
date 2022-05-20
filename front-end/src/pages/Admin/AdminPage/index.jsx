@@ -23,6 +23,6 @@ const AdminPage = () => {
       </section>
     </>
   );
-}
+};
 
 export default AdminPage;
