@@ -1,6 +1,5 @@
+import md5 from 'md5';
 import AxiosHTTP from './axios';
-
-const md5 = require('md5');
 
 const LOCAL = 'http://localhost:3001';
 
