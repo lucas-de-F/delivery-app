@@ -6,6 +6,8 @@ import OrdersList from './components/OrdersList';
 
 import { OrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
+import './styles.scss';
+
 const DetailsOrder = () => {
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state.UserSlice);
@@ -18,7 +20,11 @@ const DetailsOrder = () => {
   return (
     <>
       <Header />
-      <OrdersList />
+      <section className="section-orders">
+        <div className="content-orders">
+          <OrdersList />
+        </div>
+      </section>
     </>
   );
 };

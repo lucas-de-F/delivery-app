@@ -3,32 +3,41 @@ import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { dataTestId } from '../../../../utils';
+import { dataTestId, generateId, vefiryStatus } from '../../../../utils';
 
 const OrdersList = () => {
   const { orders } = useSelector((state) => state.OrderSlice);
 
   return (
-    <>
+    <div className="link-order-details">
       {orders.map((order, key) => (
         <Link to={ `/customer/orders/${order.id}` } key={ `'ol${key + 1}'` }>
           <ol>
-            <li data-testid={ `${dataTestId.id33}${order.id}` }>
-              {`pedido ${key + 1}`}
-            </li>
-            <li data-testid={ `${dataTestId.id34}${order.id}` }>
-              {order.status}
-            </li>
-            <li data-testid={ `${dataTestId.id35}${order.id}` }>
-              {dayjs(order.saleDate).locale('pt-br').format('DD/MM/YYYY')}
-            </li>
-            <li data-testid={ `${dataTestId.id36}${order.id}` }>
-              {order.totalPrice.toString().replace('.', ',')}
-            </li>
+            <div className="link-ol-li-1">
+              <li
+                data-testid={ `${dataTestId.id34}${order.id}` }
+                className={ `li-link-1 ${vefiryStatus(order.status)}` }
+              >
+                {order.status.toUpperCase()}
+              </li>
+              <li data-testid={ `${dataTestId.id35}${order.id}` } className="li-link-2">
+                {dayjs(order.saleDate).locale('pt-br').format('DD/MM/YYYY')}
+              </li>
+            </div>
+            <div className="link-ol-li-2">
+              <li data-testid={ `${dataTestId.id33}${order.id}` } className="li-link-3">
+                <span>Pedido:</span>
+                {' '}
+                {`${generateId(key + 1)}`}
+              </li>
+              <li data-testid={ `${dataTestId.id36}${order.id}` } className="li-link-4">
+                {order.totalPrice.toString().replace('.', ',')}
+              </li>
+            </div>
           </ol>
         </Link>
       ))}
-    </>
+    </div>
   );
 };
 export default OrdersList;
