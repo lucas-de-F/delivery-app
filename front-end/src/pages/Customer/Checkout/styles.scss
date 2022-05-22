@@ -1,0 +1,295 @@
+@import '../../../utils/styles/checkout.scss';
+
+::-webkit-scrollbar {
+  @include width-height(5px, null, 15px, null);
+  @include fontBackColor(null, null, null, null, #242626, null);
+}
+
+::-webkit-scrollbar-thumb {
+  @include width-height(null, null, 10px, null);
+  @include fontBackColor(null, null, null, null, #d2d2d2b3, null);
+}
+
+.section-checkout {
+  @include displayFlex(null, column, center, null, null);
+  @include fontBackColor(null, null, null, null, #242626, null);
+  @include width-height(100%, null, null, 100vh);
+
+  .content-checkout {
+    @include displayFlex(null, column, center, null, null);
+    @include fontBackColor(null, null, null, null, #343638, null);
+    @include width-height(86%, null, null, null);
+    @include define-box-shadow(15px, 15px, 12px);
+    margin-top: 20px;
+    padding: 40px 0;
+
+    .checkout-container {
+      @include width-height(94%, null, null, null);
+      @include border(null, 1px, solid, #949494);
+
+      .finalize-order {
+        table {
+          @include width-height(100%, null, null, null);
+
+          thead {
+            tr {
+              th {
+                @include fontBackColor(Ubuntu, sans-serif, 14px, normal, #4B4B4B, #949494);
+                @include border('-left', 1px, solid, #949494);
+                @include border('-bottom', 1px, solid, #949494);
+                padding: 10px;
+              }
+
+              th:nth-child(1) {
+                @include border('-left', 0, null, null);
+              }
+            }
+          }
+
+          tbody {
+            tr {
+              td {
+                @include fontBackColor(Ubuntu, sans-serif, 14px, normal, null, #DBC098);
+                @include border('-left', 1px, solid, #949494);
+                @include border('-bottom', 1px, solid, #949494);
+                text-align: center;
+
+                button {
+                  @include fontBackColor(null, null, null, null, rgb(183 85 85 / 63%), #cac9c7);
+                  @include width-height(100%, null, 44px, null);
+                  @include border(null, 0, null, null);
+                  padding: 14px;
+                  outline: inherit;
+                }
+
+                button:hover {
+                  @include fontBackColor(null, null, null, null, rgb(202 68 68), null);
+                  transition: 0.50s;
+                  cursor: pointer;
+                }
+              }
+
+              td:nth-child(6) {
+                padding: 0;
+              }
+
+              td:nth-child(1) {
+                @include border('-left', 0, null, null);
+              }
+            }
+          }
+        }
+
+        .checkout-total-price {
+          @include displayFlex(flex-end, null, flex-end, null, null);
+          @include width-height(100%, null, 77px, null);
+          @include border('-bottom',1px, solid, #949494);
+          margin-bottom: 30px;
+
+          div {
+            @include displayFlex(center, null, center, null, null);
+            @include fontBackColor(null, null, null, null, rgb(91 114 91 / 75%), null);
+            @include width-height(207px, null, 40px, null);
+            position: absolute;
+
+            span {
+               @include fontBackColor(Ubuntu, sans-serif, null, normal, null, #cac9c7);
+            }
+          }
+        }
+      }
+
+      .checkout-container-order-form {
+        @include displayFlex(center, null, center, null, null);
+        @include width-height(98%, null, null, 12vh);
+        @include border(null, 1px, solid, #949494);
+        margin: 0 auto;
+        margin-bottom: 10px;
+
+        form {
+          @include displayFlex(space-around, column, center, null, wrap);
+          @include width-height(100%, null, null, null);
+          margin-top: 20px;
+
+          .label-input-form-c1 {
+            @include displayFlex(space-evenly, null, flex-end, null, wrap);
+            @include width-height(100%, null, null, null);
+            margin-bottom: 10px;
+
+            label {
+              @include displayFlex(space-between, column, null, null, null);
+              @include fontBackColor(Ubuntu, sans-serif, 13px, normal, null, #cac9c7);
+              @include width-height(null, null, 100%, null);
+              padding: 6px;
+  
+              select {
+                @include fontBackColor(Ubuntu, sans-serif, 13px, normal, transparent, #cac9c7d1);
+                @include width-height(220px, null, null, null);
+                padding: 10px;
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                margin-top: 10px;
+                outline: none;
+              }
+
+              input {
+                @include fontBackColor(Ubuntu, sans-serif, 14px, normal, #acacacd1, #3E3E3E);
+                @include width-height(null, 200px, null, null);
+                @include border(null, 0, null, null);
+                transition: 0.5s;
+                padding: 11px;
+                box-sizing: border-box;
+                outline: none;
+                margin-top: 10px;
+              }
+    
+              input::placeholder {
+                @include fontBackColor(null, null, null, null, null, #3E3E3E);
+                opacity: 0.9;
+              }
+    
+              input:focus::placeholder {
+                opacity: 0.5;
+              }
+            }
+  
+            label:nth-child(2) {
+              @include width-height(333px, null, null, null);
+            }
+          }
+
+          .label-input-form-c2 {
+            @include displayFlex(flex-end, null, null, null, null);
+            @include width-height(100%, null, null, null);
+            margin-top: 14px;
+
+            button {
+              @include fontBackColor(Ubuntu, sans-serif, 14px, bold, rgb(79 165 81 / 55%), #4a4545c4);
+              @include width-height(207px, null, 40px, null);
+              @include border(null, 0, null, null);
+              padding: 14px;
+              outline: inherit;
+            }
+
+            button:hover {
+              @include fontBackColor(null, null, null, null, rgb(98 255 101 / 55%), #332d2d);
+              transition: 0.50s;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    h3 {
+      @include fontBackColor(Ubuntu, sans-serif, 21px, normal, null, #949494);
+      padding-bottom: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 856px) {
+  .section-checkout {
+    .content-checkout {
+      .checkout-container {
+        .finalize-order {
+          table {
+            tbody {
+              tr {
+                td:nth-child(2) {
+                  font-size: 11px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .section-checkout {
+    .content-checkout {
+      .checkout-container {
+        .finalize-order {
+          .checkout-total-price {
+            margin-bottom: 15px;
+          }
+        }
+
+        .checkout-container-order-form {
+          form {
+            .label-input-form-c1 {
+              label {
+                @include width-height(90%, null, null, null);
+
+                select {
+                  @include width-height(100%, null, null, null);
+                }
+              }
+
+              label:nth-child(2) {
+                @include width-height(90%, null, null, null);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 648px) {
+  .section-checkout {
+    .content-checkout {
+      .checkout-container {
+        .finalize-order {
+          table {
+            display: flex;
+
+            thead, tbody {
+              @include width-height(50%, null, null, null);
+            }
+          
+            thead tr, tbody tr {
+              @include displayFlex(null, column, null, null, null);
+            }
+
+            thead {
+              tr {
+                th {
+                  padding: 15px;
+                }
+              }
+            }
+
+            tbody {
+              display: flex;
+              overflow-x:auto;
+
+              tr {
+                flex: none;
+                @include width-height(null, 100%, null, null);
+
+                td {
+                  padding: 15px;
+                }
+
+                td:nth-child(1) {
+                  @include border('-left', 1px, solid, #949494);
+                }
+
+                td:nth-child(2) {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

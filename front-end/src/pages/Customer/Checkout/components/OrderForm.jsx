@@ -68,53 +68,57 @@ const DetailsAndDeliveryAddressForm = () => {
   });
 
   return (
-    <form onSubmit={ formik.handleSubmit }>
-      <label htmlFor="seller">
-        Para Vendedora Responsável:
-        <select
-          data-testid={ dataTestId.id29 }
-          name="sellerId"
-          id="sellerId"
-          value={ sellerId }
-          onChange={ (event) => setSellerId(event.target.value) }
+    <form onSubmit={ formik.handleSubmit } autoComplete="off">
+      <div className="label-input-form-c1">
+        <label htmlFor="seller">
+          Para Vendedora Responsável
+          <select
+            data-testid={ dataTestId.id29 }
+            name="sellerId"
+            id="sellerId"
+            value={ sellerId }
+            onChange={ (event) => setSellerId(event.target.value) }
+          >
+            { !sellers ? <option>No option</option> : sellers
+              .map((item, i) => (
+                <option
+                  key={ i }
+                  value={ item.id }
+                >
+                  { item.name }
+                </option>
+              )) }
+          </select>
+        </label>
+        <label htmlFor="adress">
+          Endereço
+          <input
+            type="text"
+            id="adress"
+            placeholder="Rua 29 de Abril"
+            data-testid={ dataTestId.id30 }
+            { ...formik.getFieldProps('deliveryAddress') }
+          />
+        </label>
+        <label htmlFor="number-adress">
+          Número
+          <input
+            type="text"
+            id="number-adress"
+            placeholder="302"
+            data-testid={ dataTestId.id31 }
+            { ...formik.getFieldProps('deliveryNumber') }
+          />
+        </label>
+      </div>
+      <div className="label-input-form-c2">
+        <button
+          data-testid={ dataTestId.id32 }
+          type="submit"
         >
-          { !sellers ? <option>No option</option> : sellers
-            .map((item, i) => (
-              <option
-                key={ i }
-                value={ item.id }
-              >
-                { item.name }
-              </option>
-            )) }
-        </select>
-      </label>
-      <label htmlFor="adress">
-        Endereço
-        <input
-          type="text"
-          id="adress"
-          placeholder="Rua 29 de Abril"
-          data-testid={ dataTestId.id30 }
-          { ...formik.getFieldProps('deliveryAddress') }
-        />
-      </label>
-      <label htmlFor="number-adress">
-        Número
-        <input
-          type="text"
-          id="number-adress"
-          placeholder="302"
-          data-testid={ dataTestId.id31 }
-          { ...formik.getFieldProps('deliveryNumber') }
-        />
-      </label>
-      <button
-        data-testid={ dataTestId.id32 }
-        type="submit"
-      >
-        FINALIZAR PEDIDO
-      </button>
+          FINALIZAR PEDIDO
+        </button>
+      </div>
     </form>
   );
 };
