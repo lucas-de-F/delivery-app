@@ -20,7 +20,8 @@
     @include fontBackColor(null, null, null, null, #343638, null);
     @include width-height(86%, null, null, null);
     @include define-box-shadow(15px, 15px, 12px);
-    margin-top: 20px;
+    min-width: 270px;
+    margin: 20px 0;
     padding: 40px 0;
 
     .checkout-container {
