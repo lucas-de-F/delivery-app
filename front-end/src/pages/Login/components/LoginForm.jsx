@@ -76,7 +76,7 @@ const LoginForm = () => {
 
   return (
     <div className="form-content-login">
-      <form onSubmit={ formik.handleSubmit }>
+      <form onSubmit={ formik.handleSubmit } autoComplete="off">
         <img src={ Logo } alt="logo" />
         <div>
           <h3>Olho de cobrA</h3>
