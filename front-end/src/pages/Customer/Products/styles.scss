@@ -5,6 +5,7 @@
   @include define-styles(100%, 100vh, null, null, #242626);
 
   .cart-button-container {
+    transition: 1s;
     @include define-styles(null, null, null, null, #DA6D00);
     @include define-font(faro, null, 2em);
     @include define-box-shadow(4px, 4px, 6px);
@@ -17,10 +18,20 @@
     right: 4%;
   }
 
+  .cart-button-container:hover {
+    cursor: pointer;
+  }
+
+  .cart-button-container:disabled {
+    background-color: #da6d0059;
+    cursor: no-drop;
+  }
+
   .products-list-container {
     @include displayFlex(center, row wrap, null);
     @include define-styles(80%, 100vh, null, null, #343638);
-    @include define-box-shadow(4px, 4px, 6px);
+    @include define-box-shadow(15px, 15px, 12px);
+    min-width: 15em;
     border-radius: 4px;
     margin-bottom: 2em;
     margin-top: 2em;

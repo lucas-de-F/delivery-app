@@ -4,17 +4,17 @@
   @include displayFlex(space-between, null, center);
   @include define-styles(100%, 4.5em, 4.5em, null, #343638);
   @include define-box-shadow(4px, 4px, 6px);
+  position: relative;
   
   .header-orders-and-products-container {
     @include displayFlex(space-between, null, center);
-    @include define-styles(20%, 85%, 85%, null, null);
+    @include define-styles(20%, 85%, 100%, null, null);
 
     .header-orders-and-products-button {
       @include displayFlex(space-evenly, column, center);
       @include define-styles(50%, 100%, 100%, null, null);
       text-decoration: none;
       text-align: center;
-      border-radius: 4px;
       transition: 0.2s;
 
       img {
@@ -28,7 +28,8 @@
     }
 
     .selected {
-      background-color: #545659 !important;
+      background-color: #535D67 !important;
+      border-radius: 0 !important;
     }
 
     .header-orders-and-products-button:hover {
@@ -39,7 +40,7 @@
 
   .header-user-and-logout-container {
     @include displayFlex(space-between, null, center);
-    @include define-styles(20%, 85%, 85%, null, null);
+    @include define-styles(20%, 85%, 100%, null, null);
 
     .header-user-content {
       @include displayFlex(space-evenly, column, center);
@@ -47,7 +48,6 @@
       text-decoration: none;
       cursor: pointer;
       text-align: center;
-      border-radius: 4px;
       transition: 0.2s;
 
       img {
@@ -71,7 +71,6 @@
       border: 0;
       text-decoration: none;
       cursor: pointer;
-      border-radius: 4px;
       transition: 0.2s;
 
       img {
@@ -94,12 +93,12 @@
 @media only screen and (max-width: 900px) {
   .header-container {
     .header-orders-and-products-container {
-      @include define-styles(30%, 85%, 85%, null, null);
+      @include define-styles(30%, 85%, 100%, null, null);
     }
 
     .header-user-and-logout-container {
 
-      @include define-styles(30%, 85%, 85%, null, null);
+      @include define-styles(30%, 85%, 100%, null, null);
     }
   }
 }
@@ -107,7 +106,7 @@
 @media only screen and (max-width: 500px) {
   .header-container {
     .header-orders-and-products-container {
-      @include define-styles(35%, 85%, 85%, null, null);
+      @include define-styles(35%, 85%, 100%, null, null);
 
       .header-orders-and-products-button {
         .header-text-button {
@@ -117,7 +116,7 @@
     }
 
     .header-user-and-logout-container {
-      @include define-styles(35%, 85%, 85%, null, null);
+      @include define-styles(35%, 85%, 100%, null, null);
 
       .header-text-button {
         display: none;

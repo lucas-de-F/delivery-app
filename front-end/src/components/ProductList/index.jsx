@@ -13,8 +13,8 @@ const ProductList = () => {
   }, [cart, dispatch]);
 
   return (
-    <div style={ { width: 500 } }>
-      Finalizar Pedido
+    <>
+      {/* Finalizar Pedido */}
       { Object.keys(cart).length === 0 ? <h4>Carrinho Vazio</h4>
         : (
           <table>
@@ -73,7 +73,7 @@ const ProductList = () => {
             </tbody>
           </table>
         )}
-    </div>
+    </>
   );
 };
 

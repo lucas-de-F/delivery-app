@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { dataTestId, selectedStyle } from '../../../utils';
+import { dataTestId } from '../../../utils';
 
 import Logo from '../../../images/logo.png';
 import Products from '../../../images/wine-bottles.png';
@@ -14,18 +14,16 @@ import './CustomerHeader.scss';
 
 const CustomerHeader = ({ customerProps }) => {
   const { name, handleClick } = customerProps;
-
-  const { handleClickStyle, result } = selectedStyle();
-
-  useEffect(() => {
-    handleClickStyle();
-  }, [result, handleClickStyle]);
+  const location = useLocation().pathname;
 
   return (
     <div className="header-container">
-      <div ref={ result } className="header-orders-and-products-container">
+      <div className="header-orders-and-products-container">
         <Link
-          className="header-orders-and-products-button selected"
+          className={
+            `header-orders-and-products-button
+            ${location.includes('/customer/products') && 'selected'}`
+          }
           to="/customer/products"
           data-testid={ dataTestId.id11 }
         >
@@ -33,7 +31,10 @@ const CustomerHeader = ({ customerProps }) => {
           <p className="header-text-button">Produtos</p>
         </Link>
         <Link
-          className="header-orders-and-products-button"
+          className={
+            `header-orders-and-products-button
+            ${location.includes('/customer/orders') && 'selected'}`
+          }
           to="/customer/orders"
           data-testid={ dataTestId.id12 }
         >
