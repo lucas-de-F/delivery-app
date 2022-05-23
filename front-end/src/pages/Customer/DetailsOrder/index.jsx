@@ -8,6 +8,8 @@ import { getOrdersById } from '../../../redux/orderSlice';
 import { getSellers } from '../../../redux/requestThunks/sellersRequest';
 import { OrderRequestThunk } from '../../../redux/requestThunks/orderRequest';
 
+import './styles.scss';
+
 const DetailsOrder = () => {
   const [orderDetail, setOrderDetail] = useState(null);
   const [sellerDetail, setSellerDetail] = useState(null);
@@ -42,23 +44,29 @@ const DetailsOrder = () => {
   return (
     <>
       <Header />
-      {
-        orderDetail && sellerDetail && (
-          <>
-            <DetailsStatus
-              saleDetail={ {
-                id: orderDetail.id,
-                saleStatus: orderDetail.status,
-                sellerName: sellerDetail.name,
-                date: orderDetail.saleDate,
-              } }
-            />
-            <ProductList productsList={ orderDetail.products } />
-            <TotalPrice totalPrice={ orderDetail.totalPrice } />
-          </>
-        )
-      }
-
+      <section className="section-datails-status">
+        <div className="content-datails-status">
+          <h3>DETALHE DO PEDIDO</h3>
+          <div className="border-table">
+            {
+              orderDetail && sellerDetail && (
+                <>
+                  <DetailsStatus
+                    saleDetail={ {
+                      id: orderDetail.id,
+                      saleStatus: orderDetail.status,
+                      sellerName: sellerDetail.name,
+                      date: orderDetail.saleDate,
+                    } }
+                  />
+                  <ProductList productsList={ orderDetail.products } />
+                  <TotalPrice totalPrice={ orderDetail.totalPrice } />
+                </>
+              )
+            }
+          </div>
+        </div>
+      </section>
     </>
   );
 };

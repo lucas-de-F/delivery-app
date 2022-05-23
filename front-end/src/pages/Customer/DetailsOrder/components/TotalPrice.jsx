@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import { dataTestId } from '../../../../utils';
 
 const TotalPrice = ({ totalPrice }) => (
-  <div>
-    <span
+  <div className="total-price-button-order">
+    <p
       data-testid={ dataTestId.id45 }
     >
-      { totalPrice.toString().replace('.', ',') }
-    </span>
+      <span>Total: </span>
+      {' '}
+      { `R$ ${totalPrice.toString().replace('.', ',')}` }
+    </p>
   </div>
 );
 
