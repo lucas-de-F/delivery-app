@@ -35,7 +35,7 @@
           thead {
             tr {
               th {
-                @include fontBackColor(Ubuntu, sans-serif, 14px, normal, #4B4B4B, #949494);
+                @include fontBackColor(Ubuntu, sans-serif, 14px, normal, rgba(65, 84, 74, 0.5019607843), #949494);
                 @include border('-left', 1px, solid, #949494);
                 @include border('-bottom', 1px, solid, #949494);
                 padding: 10px;
@@ -89,12 +89,16 @@
 
           div {
             @include displayFlex(center, null, center, null, null);
-            @include fontBackColor(null, null, null, null, rgb(91 114 91 / 75%), null);
+            @include fontBackColor(null, null, null, null, #58575A, null);
             @include width-height(207px, null, 40px, null);
             position: absolute;
 
-            span {
-               @include fontBackColor(Ubuntu, sans-serif, null, normal, null, #cac9c7);
+            p {
+               @include fontBackColor(Ubuntu, sans-serif, null, normal, null, #DBC098);
+
+               span {
+                @include fontBackColor(Ubuntu, sans-serif, null, normal, null, #949494);
+               }
             }
           }
         }
