@@ -1,0 +1,31 @@
+@mixin define-box-shadow($px1, $px2, $px3) {
+  box-shadow: $px1 $px2 $px3 0px rgb(0 0 0 / 30%);
+}
+
+@mixin displayFlex($jc, $fd, $al, $f, $fw) {
+  display: flex;
+  justify-content: $jc;
+  flex-direction: $fd;
+  align-items: $al;
+  flex: $f;
+  flex-wrap: $fw
+}
+
+@mixin width-height($w, $mw, $h, $mh) {
+  width: $w;
+  min-width: $mw;
+  height: $h;
+  min-height: $mh;
+}
+
+@mixin fontBackColor($ff1, $ff2, $fs, $fw, $b, $c) {
+  font-family: $ff1, $ff2;
+  font-size: $fs;
+  font-weight: $fw;
+  background-color: $b;
+  color: $c;
+}
+
+@mixin margin($tm: null, $m1) {
+  margin#{$tm}: $m1;
+}

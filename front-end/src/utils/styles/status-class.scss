@@ -1,0 +1,19 @@
+.status-pendente {
+  background-color: #a2951a !important;
+}
+
+.status-preparando {
+  background-color: #5c9127 !important;
+}
+
+.status-entrege {
+  background-color: #0b9574 !important;
+}
+
+.status-transito {
+  background-color: #195185 !important;
+}
+
+@mixin define-box-shadow($px1, $px2, $px3) {
+  box-shadow: $px1 $px2 $px3 0px rgb(0 0 0 / 30%);
+}
