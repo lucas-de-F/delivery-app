@@ -1,14 +1,14 @@
 @import '../../../utils/styles/orders.scss';
 
 .section-orders {
-  @include displayFlex(center, null, null, null, null);
+  @include displayFlex(center, null, flex-start, null, null);
   @include width-height(100%, 289px, null, 100vh);
   @include fontBackColor(null, null, null, null, #242626, null);
 
   .content-orders {
     @include displayFlex(center, null, null, null, wrap);
     @include define-box-shadow(15px, 15px, 12px);
-    @include width-height(86%, null, null, 50vh);
+    @include width-height(86%, null, null, 30vh);
     @include fontBackColor(null, null, null, null, #343638, null);
     @include margin(null, 30px 0);
 
@@ -16,6 +16,10 @@
       @include displayFlex(space-evenly, null, center, null, wrap);
       @include width-height(95%, null, null, null);
       @include margin(null, 25px 0);
+
+      img {
+        opacity: 0.5;
+      }
 
       a {
         @include define-box-shadow(4px, 4px, 12px);
