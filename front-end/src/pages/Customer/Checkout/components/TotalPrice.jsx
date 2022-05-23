@@ -8,15 +8,13 @@ const TotalPrice = () => {
   return (
     <div className="checkout-total-price">
       <div>
-        <span
+        <p
           data-testid={ dataTestId.id28 }
         >
-          Total:
+          <span>Total:</span>
           {' '}
-          R$
-          {' '}
-          {totalPrice}
-        </span>
+          {`R$ ${totalPrice}`}
+        </p>
       </div>
     </div>
   );

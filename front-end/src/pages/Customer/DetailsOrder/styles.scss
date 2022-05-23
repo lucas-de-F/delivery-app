@@ -1,0 +1,218 @@
+@import '../../../utils/styles/status-class.scss';
+@import '../../../utils/styles/orders.scss';
+
+.section-datails-status {
+  @include displayFlex(center, null, flex-start, null, null);
+  @include width-height(100%, null, null, 100vh);
+  @include fontBackColor(null, null, null, null, #242626, null);
+
+  .content-datails-status {
+    @include define-box-shadow(15px, 15px, 12px);
+    @include displayFlex(null, column, center, null, null);
+    @include width-height(86%, 286px, null, 60vh);
+    @include fontBackColor(null, null, null, null, #343638, null);
+    @include margin(null, 35px 0);
+    
+    h3 {
+      @include fontBackColor(Ubuntu, sans-serif, 24px, null, null, #949494);
+      padding: 33px 0;
+    }
+
+    .border-table {
+      @include displayFlex(null, column, null, null, null);
+      @include width-height(95%, null, null, null);
+      @include margin('-bottom', 20px);
+      border: 1px solid #949494;
+
+      .cnt-ds-1 {
+        @include fontBackColor(null, null, null, null, null, #4B4B4B);
+        border-bottom: 1px solid #949494;
+
+        div {
+          @include width-height(100%, null, null, null);
+
+          ul {
+            @include displayFlex(space-between !important, null, center, null, wrap);
+
+            li {
+              @include fontBackColor(Ubuntu, sans-serif, 14px, null, null, #949494);
+              @include margin(null, 0 5px);
+            }
+
+            li:nth-child(1), li:nth-child(2) {
+              @include fontBackColor(null, null, null, null, null, black);
+
+              span {
+                @include fontBackColor(null, null, null, null, null, #949494);
+                @include margin(null, 0 5px);
+              }
+            }
+
+            li:nth-child(4) {
+              @include fontBackColor(null, null, null, null, #036B52, #f5f5f5);
+              padding: 15px;
+            }
+
+            button {
+              @include fontBackColor(Ubuntu, sans-serif, revert, 500, #036B52, #f5f5f5);
+              opacity: 0.5;
+              padding: 15px;
+              border: 0;
+            }
+
+            button:hover {
+              transition: 0.25s;
+              opacity: 1;
+              cursor: pointer;
+            }
+
+            button:disabled:hover {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+
+      table {
+        @include margin(null, 7px 5px);
+        border: 1px solid #949494;
+
+        thead {
+          tr {
+            background-color: #41544a80;
+
+            th {
+              @include fontBackColor(Ubuntu, sans-serif, 14px, normal, null, #949494);
+              border: 1px solid #949494;
+              padding: 10px;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            td {
+              @include fontBackColor(Ubuntu, sans-serif, 14px, normal, null, #DBC098);
+              padding: 10px;
+              border: 1px solid #949494;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      .total-price-button-order {
+        @include displayFlex(flex-end, null, null, null, null);
+        @include margin('-top', 20px);
+
+        p {
+          @include width-height(207px, null, null, null);
+          @include fontBackColor(Ubuntu, sans-serif, 16px, null, #58575A, #DBC098);
+          border-top: 1px solid #949494;
+          border-left: 1px solid #949494;
+          text-align: center;
+          padding: 12px;
+
+          span {
+            color: #949494;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 352px)  {
+  .section-datails-status {
+    .content-datails-status {
+      .border-table {
+        table {
+          thead {
+            tr {
+              th {
+                padding: 14.9px !important;
+              }
+            }
+          }
+
+          tbody {
+            tr {
+              td:nth-child(2) {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .section-datails-status {
+    .content-datails-status {
+      .border-table {
+        table {
+          display: flex;
+
+          thead, tbody {
+            @include width-height(50%, null, null, null);
+          }
+
+          thead {
+            tr {
+              @include displayFlex(null, column, null, null, null);
+
+              th {
+                padding: 15px;
+              }
+            }
+          }
+
+          tbody {
+            display: flex;
+            overflow-x:auto;
+
+            tr {
+              @include displayFlex(null, column, null, none, null);
+              @include width-height(100%, null, null, null);
+              
+              td {
+                padding: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 943px) {
+  .section-datails-status {
+    .content-datails-status {
+      .border-table {
+        .cnt-ds-1 {
+          div {
+            ul {
+              flex-direction: column;
+
+              li {
+                @include width-height(100%, null, null, null);
+                @include displayFlex(center, null, null, null, null);
+                @include margin(null, 0);
+                border-bottom: 1px solid #949494;
+                padding: 14px;
+              }
+
+              button {
+                @include width-height(100%, null, null, null);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
